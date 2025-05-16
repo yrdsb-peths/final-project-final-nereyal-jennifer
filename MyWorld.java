@@ -8,5 +8,8 @@ public class MyWorld extends World {
         setBackground(bg);
         Person person = new Person();
         addObject(person, 150, 300);
+        
+        Reward reward = new Reward();
+        addObject(reward, 500, 200);
     }
 }

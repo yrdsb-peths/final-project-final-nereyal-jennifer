@@ -20,16 +20,18 @@ public class Person extends Actor
         if (jumpStage == 0 && Greenfoot.mouseClicked(null))
         {
             originalY = getY();
-            setLocation(getX(), originalY - 100); // jump up
+            setLocation(getX(), originalY - 100); 
+            // jump up
             jumpStage = 1;
-            jumpTimer = 30;
+            jumpTimer = 35;
         }
         else if (jumpStage == 1)
         {
             jumpTimer--;
             if (jumpTimer <= 0)
             {
-                setLocation(getX(), originalY); // come back down
+                setLocation(getX(), originalY); 
+                // come back down
                 jumpStage = 0;
             }
         }
