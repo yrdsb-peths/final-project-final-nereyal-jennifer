@@ -35,5 +35,21 @@ public class Person extends Actor
                 jumpStage = 0;
             }
         }
+        
+        /**
+         * while (person is touching (ground) || wall1 || wall2)
+         * if (jump clicked)
+         * {
+         *     jump up
+    
+         * if(personIsTouching(ground || wall1 || wall2)){
+            don't come back down
+            
+        }
+         else {
+             come back down
+         }
+        }
+         */
     }
 }
