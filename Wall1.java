@@ -13,9 +13,25 @@ public class Wall1 extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Wall1(){
-        setImage("images/wall.jpg");
-        GreenfootImage image = getImage();  
-        image.scale(image.getWidth() - 70, image.getHeight()- 150);  
+        int random = Greenfoot.getRandomNumber(2);
+        int num = Greenfoot.getRandomNumber(2);
+        if (num==0)
+        {
+            setImage("images/wall.jpg");
+            GreenfootImage image = getImage();  
+            image.scale(image.getWidth() - 70, image.getHeight()- 150); 
+        } 
+        else if (num == 1) {
+            setImage("images/wall2.jpg");
+            GreenfootImage image = getImage();  
+            image.scale(image.getWidth() - 70, image.getHeight()- 150); 
+        }
+        else{
+            setImage("images/wall3.jpg");
+            GreenfootImage image = getImage();  
+            image.scale(image.getWidth() - 70, image.getHeight()- 150);
+        }
+        
         }
     public void act()
     {
