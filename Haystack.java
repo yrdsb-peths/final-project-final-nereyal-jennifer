@@ -14,7 +14,7 @@ public class Haystack extends Actor
      */
     public Haystack(){
         GreenfootImage image = getImage();  
-        image.scale(image.getWidth() - 10, image.getHeight() - 10);  
+        image.scale(image.getWidth() - 15, image.getHeight() - 15);  
         setImage("images/hay stack.png");
     }
     public void act()
