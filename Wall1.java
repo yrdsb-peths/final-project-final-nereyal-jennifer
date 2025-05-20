@@ -36,7 +36,11 @@ public class Wall1 extends Actor
     public void act()
     {
         // Add your action code here.
-        
+        move(-1);
+        if(getX() <= 10)
+        {
+            resetWall();
+        }
         
     }
     public void resetWall()
