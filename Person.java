@@ -17,10 +17,10 @@ public class Person extends Actor
     private int jumpTimer = 0;
     public void act()
     {
-        if (jumpStage == 0 && Greenfoot.mouseClicked(null))
+        if (jumpStage == 0 && Greenfoot.isKeyDown("space"))
         {
             originalY = getY();
-            setLocation(getX(), originalY - 100); 
+            setLocation(getX(), originalY - 150); 
             // jump up
             jumpStage = 1;
             jumpTimer = 35;
