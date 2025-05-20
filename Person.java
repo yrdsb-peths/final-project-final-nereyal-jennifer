@@ -17,6 +17,23 @@ public class Person extends Actor
     private int jumpTimer = 0;
     public void act()
     {
+        if (getY() == 300)
+        {
+            jumpUp(); 
+            comeDown();
+        }
+        while ((isTouching(Wall1.class)))
+        {
+            jumpUp();
+            if(!(isTouching(Wall1.class)))
+            {
+                comeDown();
+            }
+        }
+        
+    }
+    public void jumpUp()
+    {
         if (jumpStage == 0 && Greenfoot.isKeyDown("space"))
         {
             originalY = getY();
@@ -25,7 +42,10 @@ public class Person extends Actor
             jumpStage = 1;
             jumpTimer = 35;
         }
-        else if (jumpStage == 1)
+    }
+    public void comeDown()
+    {
+        if (jumpStage == 1)
         {
             jumpTimer--;
             if (jumpTimer <= 0)
@@ -35,21 +55,5 @@ public class Person extends Actor
                 jumpStage = 0;
             }
         }
-        
-        /**
-         * while (person is touching (ground) || wall1 || wall2)
-         * if (jump clicked)
-         * {
-         *     jump up
-    
-         * if(personIsTouching(ground || wall1 || wall2)){
-            don't come back down
-            
-        }
-         else {
-             come back down
-         }
-        }
-         */
     }
 }
