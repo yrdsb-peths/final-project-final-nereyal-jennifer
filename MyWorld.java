@@ -10,10 +10,11 @@ public class MyWorld extends World {
 
         Person person = new Person();
         addObject(person, 150, 300);
-        Haystack haystack = new Haystack();
-        addObject(haystack, 500, 267);
+        
         Reward reward = new Reward();
         addObject(reward, 500, 150);
+        Wall1 wall = new Wall1();
+        addObject(wall, 567, 168);
 
     }
 }

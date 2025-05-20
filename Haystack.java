@@ -19,7 +19,7 @@ public class Haystack extends Actor
     }
     public void act()
     {
-        
+        move(-1);
         // Add your action code here.
     }
 }
