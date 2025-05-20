@@ -13,7 +13,7 @@ public class MyWorld extends World {
         Haystack haystack = new Haystack();
         addObject(haystack, 500, 267);
         Reward reward = new Reward();
-        addObject(reward, 500, 200);
+        addObject(reward, 500, 150);
 
     }
 }
