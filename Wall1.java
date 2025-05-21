@@ -48,13 +48,11 @@ public class Wall1 extends Actor
         int num = Greenfoot.getRandomNumber(2);
         if (num==0)
         {
-            setLocation(600,300);
+            setLocation(600,225);
         } 
-        else if (num == 1) {
-            setLocation(600,100);
-        }
+        
         else{
-            setLocation(600, 500);
+            setLocation(600, 150);
         }
         
     }

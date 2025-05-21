@@ -14,7 +14,7 @@ public class MyWorld extends World {
         Reward reward = new Reward();
         addObject(reward, 500, 150);
         Wall1 wall = new Wall1();
-        addObject(wall, 567, 168);
+        addObject(wall, 567, 225);
 
     }
 }
