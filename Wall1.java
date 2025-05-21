@@ -13,26 +13,32 @@ public class Wall1 extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Wall1(){
-        int random = Greenfoot.getRandomNumber(2);
-        int num = Greenfoot.getRandomNumber(2);
-        if (num==0)
+        int random = Greenfoot.getRandomNumber(1);
+        if (random ==0)
         {
-            setImage("images/wall.jpg");
+            setImage("images/wall100.jpg");
             GreenfootImage image = getImage();  
-            image.scale(image.getWidth() - 70, image.getHeight()- 150); 
+            image.scale(image.getWidth() , image.getHeight()); 
         } 
-        else if (num == 1) {
-            setImage("images/wall2.jpg");
+        else if (random == 1) {
+            setImage("images/wall200.jpg");
             GreenfootImage image = getImage();  
             image.scale(image.getWidth() - 70, image.getHeight()- 150); 
         }
         else{
-            setImage("images/wall3.jpg");
+            setImage("images/wall300.jpg");
             GreenfootImage image = getImage();  
             image.scale(image.getWidth() - 70, image.getHeight()- 150);
         }
         
         }
+    public void set1()
+    {
+        setImage("images/wall300.jpg");
+        setLocation (600, 225);
+        setImage("images/wall100.jpg");
+        setLocation(700, 150);
+    }
     public void act()
     {
         // Add your action code here.
@@ -48,7 +54,8 @@ public class Wall1 extends Actor
         int num = Greenfoot.getRandomNumber(2);
         if (num==0)
         {
-            setLocation(600,225);
+            setImage("images/wall300.jpg");
+            setLocation (600, 225);
         } 
         
         else{
