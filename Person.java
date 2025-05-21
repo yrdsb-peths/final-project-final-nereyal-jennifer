@@ -15,6 +15,10 @@ public class Person extends Actor
     private int jumpStage = 0;
     private int originalY;
     private int jumpTimer = 0;
+    public Person()
+    {
+        setImage("images/man01.png");
+    }
     public void act()
     {
         if (getY() == 300)
@@ -22,14 +26,13 @@ public class Person extends Actor
             jumpUp(); 
             comeDown();
         }
-        while ((isTouching(Wall1.class)))
+        
+        jumpUp();
+        if(!(isTouching(Wall1.class)))
         {
-            jumpUp();
-            if(!(isTouching(Wall1.class)))
-            {
-                comeDown();
-            }
+            comeDown();
         }
+        
         
     }
     public void jumpUp()
@@ -37,7 +40,7 @@ public class Person extends Actor
         if (jumpStage == 0 && Greenfoot.isKeyDown("space"))
         {
             originalY = getY();
-            setLocation(getX(), originalY - 150); 
+            setLocation(getX(), originalY - 50); 
             // jump up
             jumpStage = 1;
             jumpTimer = 35;
