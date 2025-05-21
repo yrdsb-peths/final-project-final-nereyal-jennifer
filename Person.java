@@ -26,24 +26,21 @@ public class Person extends Actor
             jumpUp(); 
             comeDown();
         }
-        
         jumpUp();
         if(!(isTouching(Wall1.class)))
         {
             comeDown();
         }
-        
-        
     }
     public void jumpUp()
     {
         if (jumpStage == 0 && Greenfoot.isKeyDown("space"))
         {
             originalY = getY();
-            setLocation(getX(), originalY - 50); 
+            setLocation(getX(), originalY - 110); 
             // jump up
             jumpStage = 1;
-            jumpTimer = 35;
+            jumpTimer = 20;
         }
     }
     public void comeDown()
