@@ -26,6 +26,7 @@ public class Reward extends Actor
             resetReward();
         }
         
+
     }
     public void resetReward()
     {
