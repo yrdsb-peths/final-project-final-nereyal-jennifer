@@ -49,9 +49,11 @@ public class Wall1 extends Actor
         }
         
     }  
+    
     public void resetWall()
     {
         int num = Greenfoot.getRandomNumber(2);
+        getWorld().addObject (new Wall1(), 600, Greenfoot.getRandomNumber(150));
         if (num==0)
         {
             setImage("images/wall300.jpg");
