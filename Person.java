@@ -21,10 +21,10 @@ public class Person extends Actor
     }
     public void act()
     {
-        if (getY() == 300)
+        if (getY() == 300 || (isTouching(Wall1.class)))
         {
             jumpUp(); 
-            comeDown();
+            
         }
         jumpUp();
         if(!(isTouching(Wall1.class)))
@@ -37,7 +37,7 @@ public class Person extends Actor
         if (jumpStage == 0 && Greenfoot.isKeyDown("space"))
         {
             originalY = getY();
-            setLocation(getX(), originalY - 110); 
+            setLocation(getX(), originalY - 100); 
             // jump up
             jumpStage = 1;
             jumpTimer = 20;

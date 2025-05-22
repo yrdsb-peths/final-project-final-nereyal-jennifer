@@ -12,9 +12,14 @@ public class MyWorld extends World {
         addObject(person, 150, 300);
         
         Reward reward = new Reward();
-        addObject(reward, 500, 150);
+        addObject(reward, 600, 150);
         Wall1 wall = new Wall1();
         addObject(wall, 600, 225);
-
+        
+        if (wall.getX() == 50)
+        {
+            Wall1 wall2 = new Wall1();
+            addObject(wall2, 600, 150);
+        }
     }
 }

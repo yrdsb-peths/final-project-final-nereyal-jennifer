@@ -43,12 +43,12 @@ public class Wall1 extends Actor
     {
         // Add your action code here.
         move(-1);
-        if(getX() <= 10)
+        if(getX() <= 50)
         {
             resetWall();
         }
         
-    }
+    }  
     public void resetWall()
     {
         int num = Greenfoot.getRandomNumber(2);
@@ -63,4 +63,28 @@ public class Wall1 extends Actor
         }
         
     }
+    
+    
+    
+    /**
+     * create walls, wall 1 would reference the previous wall put out
+     * public void wallPlacer()
+     * {
+     *     if (wall1.getY() == 225)
+     *     {
+     *         then randomly place wall above or don't place a wall at all (player goes to ground)
+     *      }
+     *      else if (wall1.getY() == 150)
+     *      {
+     *          then randomly place wall at 225 or don't place a wall at all (on the bottom)
+     *          
+     *       }
+     *       else
+     *       {
+     *           since the player would be on the floor, place a wall at 225
+     *        }
+     *}
+     *public void 
+     *
+     */
 }
