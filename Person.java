@@ -56,4 +56,16 @@ public class Person extends Actor
             }
         }
     }
-}
+    
+     public void eat()
+    {
+        if(isTouching(Reward.class))
+        {
+            removeTouching(Reward.class);
+            MyWorld world = (MyWorld) getWorld();
+            world.resetReward();
+            world.increaseScore();
+        }
+    }
+    
+    }

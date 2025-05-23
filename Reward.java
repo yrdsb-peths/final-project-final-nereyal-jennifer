@@ -20,23 +20,19 @@ public class Reward extends Actor
     public void act()
     {
         // Add your action code here.
-        move(-1);
-        if (getX() <= 0)
+         setLocation(getX()-1, getY());
+        MyWorld world= (MyWorld) getWorld();
+        if(getX() <= 0 ) 
         {
-            resetReward();
+            world.removeObject(this);
+            world.resetReward();
         }
+    }
+    
+            
+}
         
 
-    }
-    public void resetReward()
-    {
-        int num = Greenfoot.getRandomNumber(2);
-        if (num==0)
-        {
-            setLocation(500,150);
-        } else {
-            setLocation(500,300);
-        }
-        
-    }
-}
+
+    
+
