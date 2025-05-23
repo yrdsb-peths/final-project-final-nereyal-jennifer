@@ -40,7 +40,7 @@ public class Person extends Actor
             setLocation(getX(), originalY - 100); 
             // jump up
             jumpStage = 1;
-            jumpTimer = 20;
+            jumpTimer = 10;
         }
     }
     public void comeDown()
