@@ -26,39 +26,40 @@ public class Person extends Actor
         boolean onGround = getY() == 300;
         boolean onWall = isTouching(Wall1.class);
         
-        if (Greenfoot.isKeyDown("space") &&!currentlyJumping 
-        && (onGround || onWall))
+        if (Greenfoot.isKeyDown("space") && !currentlyJumping && (onGround || onWall))
         {
                 jumpUp();
             
         }
-        if(currentlyJumping)
+        if (currentlyJumping)
         {
             jumpTimer--;
             
-            if(jumpTimer <= 0 && !onWall)
-            {
-                comeDown();
-            }
-            
-            if (onWall)
+            if(jumpTimer <= 0)
             {
                 currentlyJumping = false;
             }
             
+            if(!onWall)
+            {
+                comeDown();
+            }
         }
-        if(!currentlyJumping && !onWall && !onGround)
+        if(!currentlyJumping && !onWall && !onGround) 
         {
-            setLocation(getX(), 300);
+            comeDown();
         }
+        
+        eat();
     }
+
     public void jumpUp()
     {
         originalY = getY();
         setLocation(getX(), originalY - 100); 
         // jump up
         currentlyJumping = true;
-        jumpTimer = 20;
+        jumpTimer = 15;
     }
     public void comeDown()
     {
@@ -67,9 +68,6 @@ public class Person extends Actor
             setLocation(getX(), 300);
         }
         currentlyJumping = false;
-        
-        
-
     }
     
      public void eat()
@@ -84,3 +82,4 @@ public class Person extends Actor
     }
     
 }
+
