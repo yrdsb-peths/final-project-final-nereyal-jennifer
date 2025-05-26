@@ -15,10 +15,23 @@ public class Person extends Actor
     private int jumpStage = 0;
     private int originalY;
     private int jumpTimer = 0;
+    GreenfootImage[] jumping = new GreenfootImage[7];
+    SimpleTimer animationTimer = new SimpleTimer();
     public Person()
     {
-        setImage("images/man01.png");
+        for (int i = 1; i < jumping.length + 1; i++)
+        {
+            jumping[i] = new GreenfootImage("images/jump_jump" + i + ".png");
+            animationTimer.mark();
+            
+        }
+        for (int i = 0; i < jumping.length; i++)
+        {
+            //find pictures of the same person walking/jumping
+        }
+
     }
+    
     public void act()
     {
         if (getY() == 300 || (isTouching(Wall1.class)))
@@ -31,6 +44,7 @@ public class Person extends Actor
         {
             comeDown();
         }
+        eat();
     }
     public void jumpUp()
     {
@@ -68,4 +82,6 @@ public class Person extends Actor
         }
     }
     
-    }
+    
+    
+}

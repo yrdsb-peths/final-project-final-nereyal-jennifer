@@ -15,8 +15,8 @@ public class Text extends Actor
     public Text()
     {
         String text = "Click space to start";
-        int fontSize = 60;
-        Color textColor = Color.WHITE;
+        int fontSize = 40;
+        Color textColor = Color.BLACK;
         Font font = new Font("Sauber Script", fontSize);
         GreenfootImage image = new GreenfootImage(text, fontSize, textColor, null);
         image.setFont(font);

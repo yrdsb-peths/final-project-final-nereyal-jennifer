@@ -16,7 +16,7 @@ public class Text2 extends Actor
     {
         String text = "Project name";
         int fontSize = 60;
-        Color textColor = Color.WHITE;
+        Color textColor = Color.BLACK;
         Font font = new Font("Impact.ttf", fontSize);
         GreenfootImage image = new GreenfootImage(text, fontSize, textColor, null);
         image.setFont(font);
