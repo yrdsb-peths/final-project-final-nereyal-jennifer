@@ -12,49 +12,64 @@ public class Person extends Actor
      * Act - do whatever the Person wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int jumpStage = 0;
+
     private int originalY;
     private int jumpTimer = 0;
+    private boolean currentlyJumping = false;
+    
     public Person()
     {
         setImage("images/man01.png");
     }
     public void act()
     {
-        if (getY() == 300 || (isTouching(Wall1.class)))
+        boolean onGround = getY() == 300;
+        boolean onWall = isTouching(Wall1.class);
+        
+        if (Greenfoot.isKeyDown("space") &&!currentlyJumping 
+        && (onGround || onWall))
         {
-            jumpUp(); 
+                jumpUp();
             
         }
-        jumpUp();
-        if(!(isTouching(Wall1.class)))
+        if(currentlyJumping)
         {
-            comeDown();
+            jumpTimer--;
+            
+            if(jumpTimer <= 0 && !onWall)
+            {
+                comeDown();
+            }
+            
+            if (onWall)
+            {
+                currentlyJumping = false;
+            }
+            
+        }
+        if(!currentlyJumping && !onWall && !onGround)
+        {
+            setLocation(getX(), 300);
         }
     }
     public void jumpUp()
     {
-        if (jumpStage == 0 && Greenfoot.isKeyDown("space"))
-        {
-            originalY = getY();
-            setLocation(getX(), originalY - 100); 
-            // jump up
-            jumpStage = 1;
-            jumpTimer = 10;
-        }
+        originalY = getY();
+        setLocation(getX(), originalY - 100); 
+        // jump up
+        currentlyJumping = true;
+        jumpTimer = 20;
     }
     public void comeDown()
     {
-        if (jumpStage == 1)
+        if (!isTouching(Wall1.class))
         {
-            jumpTimer--;
-            if (jumpTimer <= 0)
-            {
-                setLocation(getX(), originalY); 
-                // come back down
-                jumpStage = 0;
-            }
+            setLocation(getX(), 300);
         }
+        currentlyJumping = false;
+        
+        
+
     }
     
      public void eat()
@@ -68,4 +83,4 @@ public class Person extends Actor
         }
     }
     
-    }
+}
