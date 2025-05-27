@@ -16,6 +16,8 @@ public class Person extends Actor
     private int originalY;
     private int jumpTimer = 0;
     private boolean currentlyJumping = false;
+    int ySpeed = 0;
+    int gravity = 1;
     
     public Person()
     {
@@ -23,36 +25,53 @@ public class Person extends Actor
     }
     public void act()
     {
-        boolean onGround = getY() == 300;
-        boolean onWall = isTouching(Wall1.class);
         
-        if (Greenfoot.isKeyDown("space") && !currentlyJumping && (onGround || onWall))
+        
+        if (Greenfoot.isKeyDown("space") && !currentlyJumping)
         {
-                jumpUp();
+                currentlyJumping = true;
+                jumpTimer = 15;
+                ySpeed = -10;
             
         }
-        if (currentlyJumping)
+        
+        ySpeed += gravity;
+        setLocation(getX(), getY() + ySpeed);
+        
+        Actor wall = getOneIntersectingObject(Wall1.class);
+        if ((isTouching(Wall1.class)) && ySpeed>=0)
         {
-            jumpTimer--;
-            
-            if(jumpTimer <= 0)
-            {
-                currentlyJumping = false;
-            }
-            
-            if(!onWall)
-            {
-                comeDown();
-            }
-        }
-        if(!currentlyJumping && !onWall && !onGround) 
-        {
-            comeDown();
+            ySpeed = 0;
+            setLocation(getX(), wall.getY() - getImage().getHeight()/2);
         }
         
         eat();
+        
+        
+        /**if (currentlyJumping)
+        {
+            setLocation(getX(), getY() - 5);
+            jumpTimer--;
+            if(jumpTimer <= 0)
+            {
+                currentlyJumping = false;
+            } else
+            {
+                if(!onWall())
+                {
+                    setLocation(getX(), getY() + 5);
+                }
+            }
+        }
+        */
+        
+       
     }
-
+    private boolean onWall()
+    {
+        Actor wall = getOneObjectAtOffset(0, getImage().getHeight()/2, Wall1.class);
+        return wall != null;
+    }
     public void jumpUp()
     {
         originalY = getY();

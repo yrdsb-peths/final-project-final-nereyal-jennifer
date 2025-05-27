@@ -37,6 +37,7 @@ public class Wall1 extends Actor
         setLocation(700, 150);
 */       
     
+/**
     private static int lastWallX = 600;
     private static int lastWallY = 300;
     private boolean hasSpawnedNextWall = false;
@@ -131,3 +132,32 @@ public class Wall1 extends Actor
         return 2;
     }
 }
+*/
+
+    int speed = 3;
+    private boolean isStatic;
+    
+    public Wall1(int width)
+    {
+        this(width, false);
+    }
+    public Wall1(int width, boolean isStatic)
+    {
+        this.isStatic = isStatic;
+        GreenfootImage img = new GreenfootImage(width, 10);
+        img.setColor(Color.GRAY);
+        img.fillRect(0, 0, width, 10);
+        setImage(img);
+    }
+    
+    public void act()
+    {
+        setLocation(getX() - speed, getY());
+        
+        if (getX() < getImage().getWidth())
+        {
+            getWorld().removeObject(this);
+        }
+    }
+}
+
