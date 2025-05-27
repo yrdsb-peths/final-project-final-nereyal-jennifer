@@ -16,10 +16,44 @@ public class Person extends Actor
     private int originalY;
     private int jumpTimer = 0;
     private boolean currentlyJumping = false;
-    
+    GreenfootImage[] running = new GreenfootImage[8];
+    GreenfootImage[] jumping = new GreenfootImage[8];
+    SimpleTimer animationTimer = new SimpleTimer();
     public Person()
     {
-        setImage("images/man01.png");
+        for (int i = 0; i < running.length; i++)
+        {
+            running[i] = new GreenfootImage("images/running/run" + i + ".png");
+            running[i].scale(100, 100);
+        }
+        for (int i = 0; i < jumping.length; i++)
+        {
+            jumping[i] = new GreenfootImage("images/jumping/jump" + i + ".png");
+            jumping[i].scale(100, 100);
+        }
+        animationTimer.mark();
+        setImage(running[0]);
+        
+        
+    }
+    int imageIndex = 0;
+    public void animatePerson()
+    {
+        if (animationTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        animationTimer.mark();
+        if (Greenfoot.isKeyDown("space"))
+        {
+            setImage(jumping[imageIndex]);
+            imageIndex = (imageIndex + 1) % jumping.length;
+        }
+        else
+        {
+            setImage(running[imageIndex]);
+            imageIndex = (imageIndex + 1) % running.length;
+        }
     }
     public void act()
     {
@@ -51,6 +85,7 @@ public class Person extends Actor
         }
         
         eat();
+        animatePerson();
     }
 
     public void jumpUp()
