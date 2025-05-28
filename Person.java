@@ -13,9 +13,12 @@ public class Person extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    private int originalY;
-    private int jumpTimer = 0;
-    private boolean currentlyJumping = false;
+    private int jumpHeight = 50;
+    private int jumpSpeed = 5;
+    private boolean isJumping = false;
+    private int gravity = 2;
+    private int groundLevel = 300;
+    private int yVelocity = 0;
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
     SimpleTimer animationTimer = new SimpleTimer();
@@ -57,52 +60,42 @@ public class Person extends Actor
     }
     public void act()
     {
-        boolean onGround = getY() == 300;
-        boolean onWall = isTouching(Wall1.class);
-        
-        if (Greenfoot.isKeyDown("space") && !currentlyJumping && (onGround || onWall))
-        {
-                jumpUp();
-            
-        }
-        if (currentlyJumping)
-        {
-            jumpTimer--;
-            
-            if(jumpTimer <= 0)
-            {
-                currentlyJumping = false;
-            }
-            
-            if(!onWall)
-            {
-                comeDown();
-            }
-        }
-        if(!currentlyJumping && !onWall && !onGround) 
-        {
-            comeDown();
-        }
-        
+        checkKeys();
+        gravity();
+        checkWall();
         eat();
         animatePerson();
     }
 
-    public void jumpUp()
+    public void checkKeys()
     {
-        originalY = getY();
-        setLocation(getX(), originalY - 100); 
-        // jump up
-        currentlyJumping = true;
-        jumpTimer = 15;
-    }
-    public void comeDown()
-    {
-        if (!isTouching(Wall1.class))
+        if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel)
         {
-            setLocation(getX(), 300);
+            yVelocity = -jumpHeight;
+            isJumping = true;
         }
-        currentlyJumping = false;
+    }
+    public void gravity()
+    {
+        yVelocity += gravity;
+        setLocation(getX(), getY() + yVelocity/10);
+        if (getY() >= groundLevel)
+        {
+            setLocation(getX(), groundLevel);
+            yVelocity = 0;
+            isJumping = false;
+        }
+    }
+    public void checkWall()
+    {
+        if (isTouching(Wall1.class))
+        {
+            if (Greenfoot.isKeyDown("space"))
+            {
+                yVelocity = -jumpHeight;
+                isJumping = true;
+            }
+        }
     }
     
      public void eat()
