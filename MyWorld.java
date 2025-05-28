@@ -14,7 +14,7 @@ public class MyWorld extends World {
         setBackground(bg);
         
 
-        addObject(person, 100, 200);
+        addObject(person, 100, 100);
         
         Wall1 wall = new Wall1(300, true);
         addObject(wall, 150, 200);
