@@ -22,19 +22,20 @@ public class Person extends Actor
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
     SimpleTimer animationTimer = new SimpleTimer();
-    public int imageIndex = 0;
-    public int currentJumpFrame = 0;
+    public int runIndex = 0;
+    public int jumpIndex = 0;
+    public boolean wasJumping = false;
     public Person()
     {
         for (int i = 0; i < running.length; i++)
         {
             running[i] = new GreenfootImage("images/running/run" + i + ".png");
-            running[i].scale(100, 100);
+            running[i].scale(80, 100);
         }
         for (int i = 0; i < jumping.length; i++)
         {
             jumping[i] = new GreenfootImage("images/jumping/jump" + i + ".png");
-            jumping[i].scale(100, 100);
+            jumping[i].scale(120, 120);
         }
         
         
@@ -48,13 +49,19 @@ public class Person extends Actor
         animationTimer.mark();
         
         if (isJumping || yVelocity < 0) {
-            setImage(jumping[currentJumpFrame]);
-            currentJumpFrame = (currentJumpFrame + 1) % jumping.length;
+            setImage(jumping[jumpIndex]);
+            jumpIndex = (jumpIndex + 1) % jumping.length;
+            if (!wasJumping) {
+                runIndex = 0;
+            }
         } 
         else {
-            setImage(running[imageIndex]);
-            imageIndex = (imageIndex + 1) % running.length;
-            currentJumpFrame = 0; 
+            setImage(running[runIndex]);
+            runIndex = (runIndex + 1) % running.length;
+            if (wasJumping)
+            {
+                jumpIndex = 0;
+            }
         }
     }
     public void act()
@@ -72,7 +79,7 @@ public class Person extends Actor
         {
             yVelocity = -jumpHeight;
             isJumping = true;
-            currentJumpFrame = 0;
+            jumpIndex = 0;
         }
     }
     public void gravity()
@@ -94,7 +101,7 @@ public class Person extends Actor
             {
                 yVelocity = -jumpHeight;
                 isJumping = true;
-                currentJumpFrame = 0;
+                jumpIndex = 0;
             }
         }
     }
