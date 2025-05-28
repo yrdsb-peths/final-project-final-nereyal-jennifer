@@ -18,7 +18,6 @@ public class MyWorld extends World {
         
         Wall1 wall = new Wall1(300, true);
         addObject(wall, 150, 200);
-
          
     }
     
