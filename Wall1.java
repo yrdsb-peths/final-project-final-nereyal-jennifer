@@ -35,6 +35,7 @@ public class Wall1 extends Actor
         setLocation (600, 225);
         setImage("images/wall100.jpg");
         setLocation(700, 150);
+        balabala;
 */       
     
     private static int lastWallX = 600;

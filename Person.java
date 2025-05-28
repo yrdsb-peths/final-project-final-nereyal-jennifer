@@ -14,7 +14,6 @@ public class Person extends Actor
      */
 
     private int jumpHeight = 50;
-    private int jumpSpeed = 5;
     private boolean isJumping = false;
     private int gravity = 2;
     private int groundLevel = 300;
@@ -22,8 +21,14 @@ public class Person extends Actor
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
     SimpleTimer animationTimer = new SimpleTimer();
+    public int imageIndex = 0;
+    public int totalJumpFrames = 8;
+    public int jumpDuration = 0;
+    public int totalJumpTime;
+    public boolean wasJumping = false;
     public Person()
     {
+        totalJumpTime = (int)(Math.sqrt(2 * jumpHeight / gravity)) * 1000;
         for (int i = 0; i < running.length; i++)
         {
             running[i] = new GreenfootImage("images/running/run" + i + ".png");
@@ -34,28 +39,25 @@ public class Person extends Actor
             jumping[i] = new GreenfootImage("images/jumping/jump" + i + ".png");
             jumping[i].scale(100, 100);
         }
-        animationTimer.mark();
-        setImage(running[0]);
+        
         
         
     }
-    int imageIndex = 0;
     public void animatePerson()
     {
-        if (animationTimer.millisElapsed() < 100)
-        {
-            return;
-        }
-        animationTimer.mark();
-        if (Greenfoot.isKeyDown("space"))
-        {
-            setImage(jumping[imageIndex]);
-            imageIndex = (imageIndex + 1) % jumping.length;
-        }
-        else
-        {
-            setImage(running[imageIndex]);
-            imageIndex = (imageIndex + 1) % running.length;
+        if (isJumping || yVelocity < 0) {
+            
+            int frame = (int)((float)jumpDuration / totalJumpTime * totalJumpFrames);
+            frame = Math.min(frame, totalJumpFrames - 1);
+            setImage(jumping[frame]);
+            jumpDuration += 16;
+        } else {
+            
+            if (animationTimer.millisElapsed() > 100) {
+                animationTimer.mark();
+                imageIndex = (imageIndex + 1) % running.length;
+                setImage(running[imageIndex]);
+            }
         }
     }
     public void act()
@@ -65,6 +67,7 @@ public class Person extends Actor
         checkWall();
         eat();
         animatePerson();
+        wasJumping = isJumping;
     }
 
     public void checkKeys()
@@ -73,6 +76,7 @@ public class Person extends Actor
         {
             yVelocity = -jumpHeight;
             isJumping = true;
+            imageIndex = 0;
         }
     }
     public void gravity()
@@ -84,6 +88,7 @@ public class Person extends Actor
             setLocation(getX(), groundLevel);
             yVelocity = 0;
             isJumping = false;
+            jumpDuration = 0;
         }
     }
     public void checkWall()
@@ -94,6 +99,7 @@ public class Person extends Actor
             {
                 yVelocity = -jumpHeight;
                 isJumping = true;
+                jumpDuration = 0;
             }
         }
     }
