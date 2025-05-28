@@ -16,62 +16,78 @@ public class Person extends Actor
     private int originalY;
     private int jumpTimer = 0;
     private boolean currentlyJumping = false;
-    int ySpeed = 0;
-    int gravity = 1;
-    
+    GreenfootImage[] running = new GreenfootImage[8];
+    GreenfootImage[] jumping = new GreenfootImage[8];
+    SimpleTimer animationTimer = new SimpleTimer();
     public Person()
     {
-        setImage("images/man01.png");
+        for (int i = 0; i < running.length; i++)
+        {
+            running[i] = new GreenfootImage("images/running/run" + i + ".png");
+            running[i].scale(100, 100);
+        }
+        for (int i = 0; i < jumping.length; i++)
+        {
+            jumping[i] = new GreenfootImage("images/jumping/jump" + i + ".png");
+            jumping[i].scale(100, 100);
+        }
+        animationTimer.mark();
+        setImage(running[0]);
+        
+        
+    }
+    int imageIndex = 0;
+    public void animatePerson()
+    {
+        if (animationTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        animationTimer.mark();
+        if (Greenfoot.isKeyDown("space"))
+        {
+            setImage(jumping[imageIndex]);
+            imageIndex = (imageIndex + 1) % jumping.length;
+        }
+        else
+        {
+            setImage(running[imageIndex]);
+            imageIndex = (imageIndex + 1) % running.length;
+        }
     }
     public void act()
     {
+        boolean onGround = getY() == 300;
+        boolean onWall = isTouching(Wall1.class);
         
-        
-        if (Greenfoot.isKeyDown("space") && !currentlyJumping)
+        if (Greenfoot.isKeyDown("space") && !currentlyJumping && (onGround || onWall))
         {
-                currentlyJumping = true;
-                jumpTimer = 15;
-                ySpeed = -10;
+                jumpUp();
             
         }
-        
-        ySpeed += gravity;
-        setLocation(getX(), getY() + ySpeed);
-        
-        Actor wall = getOneIntersectingObject(Wall1.class);
-        if ((isTouching(Wall1.class)) && ySpeed>=0)
+        if (currentlyJumping)
         {
-            ySpeed = 0;
-            setLocation(getX(), wall.getY() - getImage().getHeight()/2);
-        }
-        
-        eat();
-        
-        
-        /**if (currentlyJumping)
-        {
-            setLocation(getX(), getY() - 5);
             jumpTimer--;
+            
             if(jumpTimer <= 0)
             {
                 currentlyJumping = false;
-            } else
+            }
+            
+            if(!onWall)
             {
-                if(!onWall())
-                {
-                    setLocation(getX(), getY() + 5);
-                }
+                comeDown();
             }
         }
-        */
+        if(!currentlyJumping && !onWall && !onGround) 
+        {
+            comeDown();
+        }
         
-       
+        eat();
+        animatePerson();
     }
-    private boolean onWall()
-    {
-        Actor wall = getOneObjectAtOffset(0, getImage().getHeight()/2, Wall1.class);
-        return wall != null;
-    }
+
     public void jumpUp()
     {
         originalY = getY();
