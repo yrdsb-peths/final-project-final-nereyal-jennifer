@@ -20,9 +20,9 @@ public class Reward extends Actor
     public void act()
     {
         // Add your action code here.
-         setLocation(getX()-1, getY());
+        setLocation(getX() - 3, getY());
         MyWorld world= (MyWorld) getWorld();
-        if(getX() <= 0 ) 
+        if(getX() <= 0) 
         {
             world.removeObject(this);
             world.resetReward();

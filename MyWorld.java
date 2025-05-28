@@ -3,27 +3,49 @@ import greenfoot.*;
 public class MyWorld extends World {
     public int score = 0;
     Label scoreLabel;
+    private int wallTimer = 0;
+    private int coinTimer = 0;
+    Person person = new Person();
     public MyWorld() {
         super(600, 400, 1);
 
         GreenfootImage bg = new GreenfootImage("images/background.jpg");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
+        
 
-        Person person = new Person();
-        addObject(person, 150, 300);
+        addObject(person, 100, 200);
         
-        Reward reward = new Reward();
-        addObject(reward, 600, 150);
-        Wall1 wall = new Wall1();
-        addObject(wall, 600, 225);
-        scoreLabel = new Label(0, 80);
-        addObject(scoreLabel, 50, 50);
+        Wall1 wall = new Wall1(300, true);
+        addObject(wall, 150, 200);
+
+         
+    }
+    
+    public void act()
+    {
+        wallTimer++;
+        coinTimer++;
         
-        if (wall.getX() == 50)
+        if(wallTimer > 60)
         {
-            Wall1 wall2 = new Wall1();
-            addObject(wall2, 600, 150);
+            int y = Greenfoot.getRandomNumber(350) + 30;
+            int w = Greenfoot.getRandomNumber(50) + 100;
+            addObject(new Wall1(w), 610, y);
+            wallTimer = 0;
+        }
+        
+        if(coinTimer > 100)
+        {
+            int y = Greenfoot.getRandomNumber(300) + 30;
+            addObject(new Reward(), 610, y);
+            coinTimer = 0;
+        }
+        
+        if(person.getY() > getHeight())
+        {
+            showText("Game Over", getWidth()/2 - 30, getHeight()/2);
+            Greenfoot.stop();
         }
     }
      
