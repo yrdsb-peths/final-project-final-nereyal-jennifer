@@ -37,7 +37,7 @@ public class Wall1 extends Actor
         setLocation(700, 150);
 */       
     
-/**
+
     private static int lastWallX = 600;
     private static int lastWallY = 300;
     private boolean hasSpawnedNextWall = false;
@@ -132,8 +132,8 @@ public class Wall1 extends Actor
         return 2;
     }
 }
-*/
 
+/**
     int speed = 3;
     private boolean isStatic;
     
@@ -160,4 +160,5 @@ public class Wall1 extends Actor
         }
     }
 }
+*/
 

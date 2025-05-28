@@ -16,12 +16,15 @@ public class MyWorld extends World {
 
         addObject(person, 100, 200);
         
-        Wall1 wall = new Wall1(300, true);
+        Wall1 wall = new Wall1();
         addObject(wall, 150, 200);
-
+        
+        scoreLabel = new Label(0, 80);
+        addObject(scoreLabel, 50, 50);
          
     }
     
+    /**
     public void act()
     {
         wallTimer++;
@@ -48,6 +51,7 @@ public class MyWorld extends World {
             Greenfoot.stop();
         }
     }
+    */
      
     public void resetReward()
     {
