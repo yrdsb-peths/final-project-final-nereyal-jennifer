@@ -12,6 +12,11 @@ public class Tree extends Actor
      * Act - do whatever the Tree wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public Tree()
+    {
+        setImage("images/tree3.png");
+    }
+    
     public void act()
     {
         // Add your action code here.
@@ -27,5 +32,5 @@ public class Tree extends Actor
     {
         setLocation(500, 300);
     }
-
+    
 }

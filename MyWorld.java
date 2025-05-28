@@ -21,6 +21,12 @@ public class MyWorld extends World {
         
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
+        
+        Tree tree = new Tree();
+        addObject(tree, 150, 300);
+        
+        Reward reward = new Reward();
+        addObject(reward, 150, 200);
          
     }
     
