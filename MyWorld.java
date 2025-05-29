@@ -6,6 +6,7 @@ public class MyWorld extends World {
     private int wallTimer = 0;
     private int coinTimer = 0;
     Person person = new Person();
+    private int spawnTimer = 0;
     public MyWorld() {
         super(600, 400, 1);
 
@@ -16,8 +17,6 @@ public class MyWorld extends World {
 
         addObject(person, 100, 100);
         
-        Wall1 wall = new Wall1();
-        addObject(wall, 150, 200);
         
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
@@ -27,6 +26,9 @@ public class MyWorld extends World {
         
         Reward reward = new Reward();
         addObject(reward, 150, 200);
+        
+        Frog frog = new Frog();
+        addObject(frog, 600, 300);
          
     }
     
@@ -58,7 +60,17 @@ public class MyWorld extends World {
         }
     }
     */
-     
+    public void act()
+    {
+        spawnTimer--;
+        
+        if(spawnTimer <= 0)
+        {
+            addObject(new Frog(), 600, 300);
+            spawnTimer = Greenfoot.getRandomNumber(60) + 40;
+        }
+    }
+   
     public void resetReward()
     {
         Reward reward = new Reward();
