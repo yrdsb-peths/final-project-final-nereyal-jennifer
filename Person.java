@@ -38,8 +38,6 @@ public class Person extends Actor
             jumping[i].scale(120, 120);
         }
         
-        
-        
     }
     public void animatePerson()
     {
@@ -68,9 +66,9 @@ public class Person extends Actor
     {
         checkKeys();
         gravity();
-        checkWall();
         eat();
         animatePerson();
+
     }
 
     public void checkKeys()
@@ -91,18 +89,6 @@ public class Person extends Actor
             setLocation(getX(), groundLevel);
             yVelocity = 0;
             isJumping = false;
-        }
-    }
-    public void checkWall()
-    {
-        if (isTouching(Wall1.class))
-        {
-            if (Greenfoot.isKeyDown("space"))
-            {
-                yVelocity = -jumpHeight;
-                isJumping = true;
-                jumpIndex = 0;
-            }
         }
     }
     

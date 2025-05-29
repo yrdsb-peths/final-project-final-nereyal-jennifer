@@ -5,16 +5,18 @@ public class MyWorld extends World {
     Label scoreLabel;
     private int wallTimer = 0;
     private int coinTimer = 0;
+    public int scrollPosition = 0;
     Person person = new Person();
+    public GreenfootImage background;
     public MyWorld() {
-        super(600, 400, 1);
+        super(600, 400, 1, false);
 
-        GreenfootImage bg = new GreenfootImage("images/background.jpg");
-        bg.scale(getWidth(), getHeight());
-        setBackground(bg);
+        background = new GreenfootImage("images/background.jpg");
+        background.scale(getWidth(), 400);
+        setBackground(background);
         
 
-        addObject(person, 100, 100);
+        addObject(person, 100, 300);
         
         Wall1 wall = new Wall1();
         addObject(wall, 150, 200);
