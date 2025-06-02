@@ -18,7 +18,7 @@ public class Frog extends Actor
         // Add your action code here.
         move(-3);
         
-        if(getX() <= 5)
+        if(getX() <= 10)
         {
             getWorld().removeObject(this);
         }
@@ -27,6 +27,7 @@ public class Frog extends Actor
         {
             getWorld().removeObject(this);
             //game over screen!
+            
         }
     }
     
