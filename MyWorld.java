@@ -5,21 +5,16 @@ public class MyWorld extends World {
     Label scoreLabel;
     private int wallTimer = 0;
     private int coinTimer = 0;
-    public int scrollPosition = 0;
+    public int imageCount = 0;
     Person person = new Person();
-<<<<<<< HEAD
-    public GreenfootImage background;
-=======
-    private int spawnTimer = 0;
->>>>>>> 2dc37fcf1c7d05e279f77af811e15e22ab34544d
+    private GreenfootImage bgImage = new GreenfootImage("ezgif-8f31631d823f45.jpg");
+    private int scrollSpeed = 1; 
+    private GreenfootImage scrollingImage; 
+    private int scrollPosition = 0; 
     public MyWorld() {
-        super(600, 400, 1, false);
-
-        background = new GreenfootImage("images/background.jpg");
-        background.scale(getWidth(), 400);
-        setBackground(background);
-        
-
+        super(700, 400, 1);
+        setBackground(bgImage);
+        scrollingImage = new GreenfootImage (getBackground());
         addObject(person, 100, 300);
         
         
@@ -36,7 +31,6 @@ public class MyWorld extends World {
         addObject(frog, 600, 300);
          
     }
-    
     /**
     public void act()
     {
@@ -65,17 +59,26 @@ public class MyWorld extends World {
         }
     }
     */
-    public void act()
-    {
-        spawnTimer--;
-        
-        if(spawnTimer <= 0)
-        {
-            addObject(new Frog(), 600, 300);
-            spawnTimer = Greenfoot.getRandomNumber(60) + 40;
-        }
+     public void act() 
+    { 
+            
+        if(scrollPosition < 0) { 
+            scrollPosition = getWidth(); 
+         }
+        scrollPosition -= scrollSpeed; 
+        paint(scrollPosition); 
     }
-   
+    private void paint(int position) 
+    { 
+         GreenfootImage bg = getBackground(); 
+         bg.drawImage(scrollingImage, position, 0); 
+         if(position > 0) { 
+             bg.drawImage(scrollingImage, position - scrollingImage.getWidth(), 0); 
+         } 
+         else { 
+             bg.drawImage(scrollingImage, position + scrollingImage.getWidth(), 0); 
+         } 
+    }
     public void resetReward()
     {
         Reward reward = new Reward();
