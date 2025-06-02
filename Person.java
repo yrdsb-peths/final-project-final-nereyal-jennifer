@@ -16,7 +16,7 @@ public class Person extends Actor
     private int jumpHeight = 75;
     private boolean isJumping = false;
     private int gravity = 2;
-    private int groundLevel = 300;
+    private int groundLevel = 260;
     private int yVelocity = 0;
     
     GreenfootImage[] running = new GreenfootImage[8];

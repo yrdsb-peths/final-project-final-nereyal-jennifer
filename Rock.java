@@ -6,15 +6,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Tree extends Actor
+public class Rock extends Actor
 {
     /**
      * Act - do whatever the Tree wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Tree()
+    public Rock()
     {
-        setImage("images/tree3.png");
+         setImage("images/ezgif-4761526e8cf023.png");
+        
     }
     
     public void act()
@@ -23,14 +24,14 @@ public class Tree extends Actor
         move(-1);
         if (getX() <= 0)
         {
-            resetTree();
+            resetRock();
         }
         
     }
     
-    public void resetTree()
+    public void resetRock()
     {
-        setLocation(500, 300);
+        setLocation(700, 300);
     }
     
 }

@@ -7,7 +7,7 @@ public class MyWorld extends World {
     private int coinTimer = 0;
     public int imageCount = 0;
     Person person = new Person();
-    private GreenfootImage bgImage = new GreenfootImage("ezgif-8f31631d823f45.jpg");
+    private GreenfootImage bgImage = new GreenfootImage("background.jpg");
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
@@ -15,14 +15,14 @@ public class MyWorld extends World {
         super(700, 400, 1);
         setBackground(bgImage);
         scrollingImage = new GreenfootImage (getBackground());
-        addObject(person, 100, 300);
+        addObject(person, 100, 260);
         
         
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
         
-        Tree tree = new Tree();
-        addObject(tree, 150, 300);
+        Rock rock = new Rock();
+        addObject(rock, 150, 300);
         
         Reward reward = new Reward();
         addObject(reward, 150, 200);
