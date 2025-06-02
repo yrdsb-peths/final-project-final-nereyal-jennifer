@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Frog here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nereyal
+ * @version May 2025
  */
 public class Frog extends Actor
 {
@@ -23,7 +23,7 @@ public class Frog extends Actor
             world.removeObject(this);
         }
         
-        if(isTouching(Person.class))
+        else if(isTouching(Person.class))
         {
             world.removeObject(this);
             //game over screen!

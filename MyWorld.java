@@ -7,22 +7,23 @@ public class MyWorld extends World {
     private int coinTimer = 0;
     public int imageCount = 0;
     Person person = new Person();
-    private GreenfootImage bgImage = new GreenfootImage("background.jpg");
+    private GreenfootImage bgImage = new GreenfootImage("ezgif-8f31631d823f45.jpg");
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
+    private int spawnTimer = 0;
     public MyWorld() {
         super(700, 400, 1);
         setBackground(bgImage);
         scrollingImage = new GreenfootImage (getBackground());
-        addObject(person, 100, 260);
+        addObject(person, 100, 300);
         
         
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
         
-        Rock rock = new Rock();
-        addObject(rock, 150, 300);
+        //Tree tree = new Tree();
+        //addObject(tree, 150, 300);
         
         Reward reward = new Reward();
         addObject(reward, 150, 200);
@@ -67,6 +68,14 @@ public class MyWorld extends World {
          }
         scrollPosition -= scrollSpeed; 
         paint(scrollPosition); 
+        
+        spawnTimer--;
+        
+        if(spawnTimer <= 0)
+        {
+            addObject(new Frog(), 600, 300);
+            spawnTimer = Greenfoot.getRandomNumber(60) + 60;
+        }
     }
     private void paint(int position) 
     { 
