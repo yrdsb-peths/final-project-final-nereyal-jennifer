@@ -14,7 +14,9 @@ public class Reward extends Actor
      */
     public Reward()
     {
-        setImage("images/yellow-draught.png");
+        GreenfootImage image = new GreenfootImage("images/mushroom2.png");
+        image.scale(50, 50);
+        setImage(image);
     }
     
     public void act()
