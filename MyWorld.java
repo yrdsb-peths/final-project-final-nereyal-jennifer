@@ -11,6 +11,7 @@ public class MyWorld extends World {
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
+    private int spawnTimer = 0;
     public MyWorld() {
         super(700, 400, 1);
         setBackground(bgImage);
@@ -67,6 +68,14 @@ public class MyWorld extends World {
          }
         scrollPosition -= scrollSpeed; 
         paint(scrollPosition); 
+        
+        spawnTimer--;
+        
+        if(spawnTimer <= 0)
+        {
+            addObject(new Frog(), 600, 300);
+            spawnTimer = Greenfoot.getRandomNumber(60) + 50;
+        }
     }
     private void paint(int position) 
     { 

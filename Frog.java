@@ -17,18 +17,19 @@ public class Frog extends Actor
     {
         // Add your action code here.
         move(-3);
-        
-        if(getX() <= 10)
+        MyWorld world= (MyWorld) getWorld();
+        if(getX() <= 0)
         {
-            getWorld().removeObject(this);
+            world.removeObject(this);
         }
         
         if(isTouching(Person.class))
         {
-            getWorld().removeObject(this);
+            world.removeObject(this);
             //game over screen!
             
         }
+        
     }
     
     public void spawnFrog()
