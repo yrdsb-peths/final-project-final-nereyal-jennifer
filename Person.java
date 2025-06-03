@@ -37,7 +37,7 @@ public class Person extends Actor
             jumping[i] = new GreenfootImage("images/jumping/jump" + i + ".png");
             jumping[i].scale(120, 120);
         }
-        
+        setImage(running[0]);
     }
     public void animatePerson()
     {

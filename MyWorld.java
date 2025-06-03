@@ -13,7 +13,7 @@ public class MyWorld extends World {
     private int scrollPosition = 0; 
     private int spawnTimer = 0;
     public MyWorld() {
-        super(700, 400, 1);
+        super(1000, 400, 1);
         setBackground(bgImage);
         scrollingImage = new GreenfootImage (getBackground());
         addObject(person, 100, 300);
