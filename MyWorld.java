@@ -74,7 +74,7 @@ public class MyWorld extends World {
         if(spawnTimer <= 0)
         {
             addObject(new Frog(), 600, 300);
-            spawnTimer = Greenfoot.getRandomNumber(60) + 60;
+            spawnTimer = Greenfoot.getRandomNumber(70) + 90;
         }
     }
     private void paint(int position) 
