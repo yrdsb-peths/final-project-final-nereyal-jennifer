@@ -13,7 +13,7 @@ public class Person extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    private int jumpHeight = 100;
+    private int jumpHeight = 80;
     private boolean isJumping = false;
     private int gravity = 2;
     private int groundLevel = 260;
