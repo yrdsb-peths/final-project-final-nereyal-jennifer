@@ -28,8 +28,8 @@ public class MyWorld extends World {
         Reward reward = new Reward();
         addObject(reward, 150, 200);
         
-        Frog frog = new Frog();
-        addObject(frog, 600, 300);
+        Eagle eagle = new Eagle();
+        addObject(eagle, 600, 250);
          
     }
     /**
@@ -73,8 +73,8 @@ public class MyWorld extends World {
         
         if(spawnTimer <= 0)
         {
-            addObject(new Frog(), 600, 300);
-            spawnTimer = Greenfoot.getRandomNumber(70) + 90;
+            addObject(new Eagle(), 600, 250);
+            spawnTimer = Greenfoot.getRandomNumber(70) + 100;
         }
     }
     private void paint(int position) 
