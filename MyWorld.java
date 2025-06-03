@@ -7,7 +7,7 @@ public class MyWorld extends World {
     private int coinTimer = 0;
     public int imageCount = 0;
     Person person = new Person();
-    private GreenfootImage bgImage = new GreenfootImage("ezgif-8f31631d823f45.jpg");
+    private GreenfootImage bgImage = new GreenfootImage("background.jpg");
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
@@ -74,7 +74,7 @@ public class MyWorld extends World {
         if(spawnTimer <= 0)
         {
             addObject(new Frog(), 600, 300);
-            spawnTimer = Greenfoot.getRandomNumber(60) + 60;
+            spawnTimer = Greenfoot.getRandomNumber(70) + 90;
         }
     }
     private void paint(int position) 
