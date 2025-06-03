@@ -26,6 +26,10 @@ public class Rock extends Actor
         {
             resetRock();
         }
+        else if (isTouching(Person.class))
+        {
+            getWorld().removeObject(this);
+        }
         
     }
     
