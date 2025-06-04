@@ -34,7 +34,8 @@ public class Eagle extends Actor
         {
             world.removeObject(this);
             //game over screen!
-            
+            GameOver gameOver = new GameOver();
+            Greenfoot.setWorld(gameOver);
         }
         
     }

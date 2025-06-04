@@ -27,13 +27,13 @@ public class MyWorld extends World {
         //addObject(tree, 150, 300);
         
         Reward reward = new Reward();
-        addObject(reward, 1000, 200);
+        addObject(reward, 800, 200);
         
         Eagle eagle = new Eagle();
-        addObject(eagle, 1000, 150);
+        addObject(eagle, 1200, 150);
         
         Rock rock = new Rock();
-        addObject(rock, 1000, 300);
+        addObject(rock, 800, 300);
          
     }
     /**
@@ -86,7 +86,7 @@ public class MyWorld extends World {
         if (rockTimer <= 0)
         {
             addObject(new Rock(), 1000, 300);
-            rockTimer = Greenfoot.getRandomNumber (70) + 500;
+            rockTimer = Greenfoot.getRandomNumber((500) + 500);
         }
     }
     private void paint(int position) 
