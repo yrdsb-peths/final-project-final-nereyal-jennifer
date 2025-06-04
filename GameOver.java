@@ -17,7 +17,7 @@ public class GameOver extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 400, 1); 
-        GreenfootImage bg = new GreenfootImage("cemetery.jpg");
+        GreenfootImage bg = new GreenfootImage("cemetery1.jpg");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
         Person person = new Person();
