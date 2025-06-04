@@ -19,7 +19,7 @@ public class TitleScreen extends World
         super(1000, 400, 1); 
         setBackground("images/title screen.jpg");
         Person person = new Person();
-        addObject(person, 100, 300);
+        addObject(person, 200, 335);
     }
     
      public void act()

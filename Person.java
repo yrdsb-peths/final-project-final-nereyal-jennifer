@@ -64,6 +64,8 @@ public class Person extends Actor
     }
     public void act()
     {
+        
+        
         checkKeys();
         gravity();
         eat();
@@ -73,11 +75,24 @@ public class Person extends Actor
 
     public void checkKeys()
     {
-        if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel)
-        {
-            yVelocity = -jumpHeight;
-            isJumping = true;
-            jumpIndex = 0;
+        World currentWorld = getWorld();
+
+        if (currentWorld instanceof TitleScreen) {
+        
+            if (Greenfoot.isKeyDown("left")) {
+            setLocation(getX() - 2, getY());
+            }
+            if (Greenfoot.isKeyDown("right")) {
+            setLocation(getX() + 2, getY());
+            }
+        } 
+        else if (currentWorld instanceof MyWorld) {
+        
+            if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel) {
+                yVelocity = -jumpHeight;
+                isJumping = true;
+                jumpIndex = 0;
+            }
         }
     }
     public void gravity()
