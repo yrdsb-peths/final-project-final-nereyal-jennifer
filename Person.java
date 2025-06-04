@@ -91,7 +91,7 @@ public class Person extends Actor
             }
             else{
                 GreenfootImage standingImage = new GreenfootImage("images/standing.png");
-                standingImage.scale(65, 110);
+                standingImage.scale(60, 110);
                 setImage(standingImage);
                 
             }
