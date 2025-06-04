@@ -21,9 +21,13 @@ public class Person extends Actor
     
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
+    GreenfootImage[] runningLeft = new GreenfootImage[8];
+    String facing = "right";
+    boolean isMoving = false;
     SimpleTimer animationTimer = new SimpleTimer();
     public int runIndex = 0;
     public int jumpIndex = 0;
+    public int runLeftIndex = 0;
     public boolean wasJumping = false;
     public Person()
     {
@@ -33,39 +37,70 @@ public class Person extends Actor
             running[i].scale(80, 100);
         }
         for (int i = 0; i < jumping.length; i++)
-        {
+        {   
             jumping[i] = new GreenfootImage("images/jumping/jump" + i + ".png");
             jumping[i].scale(120, 120);
+        }
+        for (int i = 0; i < running.length; i++)
+        {
+            running[i] = new GreenfootImage("images/running/run" + i + ".png");
+            running[i].scale(80, 100);
+        }
+        for (int i = 0; i < runningLeft.length; i++)
+        {
+                runningLeft[i] = new GreenfootImage("images/running/run" + i + ".png");
+                runningLeft[i].mirrorHorizontally();
+                runningLeft[i].scale(80, 100);
         }
         setImage(running[0]);
     }
     public void animatePerson()
     {
+        World currentWorld = getWorld();
         if (animationTimer.millisElapsed() < 100) { 
             return;
         }
         animationTimer.mark();
-        
-        if (isJumping || yVelocity < 0) {
-            setImage(jumping[jumpIndex]);
-            jumpIndex = (jumpIndex + 1) % jumping.length;
-            if (!wasJumping) {
-                runIndex = 0;
+        if (currentWorld instanceof MyWorld){
+            if (isJumping || yVelocity < 0) {
+                setImage(jumping[jumpIndex]);
+                jumpIndex = (jumpIndex + 1) % jumping.length;
+                if (!wasJumping) {
+                    runIndex = 0;
+                }
+            } 
+            else{
+                setImage(running[runIndex]);
+                runIndex = (runIndex + 1) % running.length;
+                if (wasJumping)
+                {
+                    jumpIndex = 0;
+                }
             }
-        } 
-        else {
-            setImage(running[runIndex]);
-            runIndex = (runIndex + 1) % running.length;
-            if (wasJumping)
+        }
+        if (currentWorld instanceof TitleScreen){
+            if(facing.equals("right") && isMoving == true)
             {
-                jumpIndex = 0;
+                setImage(running[runIndex]);
+                runIndex = (runIndex + 1) % running.length;
+            }
+            else if (facing.equals("left") && isMoving == true)
+            {   
+                setImage(runningLeft[runLeftIndex]);
+                runLeftIndex = (runLeftIndex + 1) % runningLeft.length;
+            }
+            else{
+                GreenfootImage standingImage = new GreenfootImage("images/standing.png");
+                standingImage.scale(65, 110);
+                setImage(standingImage);
+                
             }
         }
     }
     public void act()
     {
         
-        
+        World currentWorld = getWorld();
         checkKeys();
         gravity();
         eat();
@@ -75,15 +110,19 @@ public class Person extends Actor
 
     public void checkKeys()
     {
+        isMoving = false;
         World currentWorld = getWorld();
-
         if (currentWorld instanceof TitleScreen) {
         
             if (Greenfoot.isKeyDown("left")) {
-            setLocation(getX() - 2, getY());
+                setLocation(getX() - 2, getY());
+                isMoving = true;
+                facing = "left";
             }
             if (Greenfoot.isKeyDown("right")) {
-            setLocation(getX() + 2, getY());
+                setLocation(getX() + 2, getY());
+                isMoving = true;
+                facing = "right";
             }
         } 
         else if (currentWorld instanceof MyWorld) {
@@ -97,13 +136,17 @@ public class Person extends Actor
     }
     public void gravity()
     {
-        yVelocity += gravity;
-        setLocation(getX(), getY() + yVelocity/10);
-        if (getY() >= groundLevel)
-        {
-            setLocation(getX(), groundLevel);
-            yVelocity = 0;
-            isJumping = false;
+        World currentWorld = getWorld();
+
+        if (currentWorld instanceof MyWorld) {
+            yVelocity += gravity;
+            setLocation(getX(), getY() + yVelocity/10);
+            if (getY() >= groundLevel)
+            {
+                setLocation(getX(), groundLevel);
+                yVelocity = 0;
+                isJumping = false;
+            }
         }
     }
     
