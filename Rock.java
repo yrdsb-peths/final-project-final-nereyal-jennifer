@@ -31,6 +31,8 @@ public class Rock extends Actor
         else if (isTouching(Person.class))
         {
             getWorld().removeObject(this);
+            GameOver gameOver = new GameOver();
+            Greenfoot.setWorld(gameOver);
         }
         
     }

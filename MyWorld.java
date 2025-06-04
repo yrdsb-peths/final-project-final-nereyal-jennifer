@@ -86,7 +86,7 @@ public class MyWorld extends World {
         if (rockTimer <= 0)
         {
             addObject(new Rock(), 1000, 300);
-            rockTimer = Greenfoot.getRandomNumber (70) + 500;
+            rockTimer = Greenfoot.getRandomNumber ((100) + 500);
         }
     }
     private void paint(int position) 
