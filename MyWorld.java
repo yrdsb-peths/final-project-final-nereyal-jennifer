@@ -11,7 +11,8 @@ public class MyWorld extends World {
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
-    private int spawnTimer = 0;
+    private int eagleTimer = 0;
+    private int rockTimer = 0;
     public MyWorld() {
         super(1000, 400, 1);
         setBackground(bgImage);
@@ -26,10 +27,13 @@ public class MyWorld extends World {
         //addObject(tree, 150, 300);
         
         Reward reward = new Reward();
-        addObject(reward, 150, 200);
+        addObject(reward, 1000, 200);
         
         Eagle eagle = new Eagle();
-        addObject(eagle, 600, 250);
+        addObject(eagle, 1000, 150);
+        
+        Rock rock = new Rock();
+        addObject(rock, 1000, 300);
          
     }
     /**
@@ -69,12 +73,20 @@ public class MyWorld extends World {
         scrollPosition -= scrollSpeed; 
         paint(scrollPosition); 
         
-        spawnTimer--;
+        eagleTimer--;
         
-        if(spawnTimer <= 0)
+        
+        if(eagleTimer <= 0)
         {
-            addObject(new Eagle(), 600, 250);
-            spawnTimer = Greenfoot.getRandomNumber(70) + 100;
+            addObject(new Eagle(), 1000, 150);
+            eagleTimer = Greenfoot.getRandomNumber(70) + 100;
+        }
+        
+        rockTimer--;
+        if (rockTimer <= 0)
+        {
+            addObject(new Rock(), 1000, 300);
+            rockTimer = Greenfoot.getRandomNumber (70) + 500;
         }
     }
     private void paint(int position) 
@@ -92,7 +104,7 @@ public class MyWorld extends World {
     {
         Reward reward = new Reward();
         int num = Greenfoot.getRandomNumber(2);
-        int x = 600;
+        int x = 1000;
         int y = 0;
         if (num==0)
         {

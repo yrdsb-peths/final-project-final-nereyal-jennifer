@@ -14,17 +14,23 @@ public class Rock extends Actor
      */
     public Rock()
     {
-         setImage("images/ezgif-4761526e8cf023.png");
+        GreenfootImage rockImage = new GreenfootImage("images/ezgif-4761526e8cf023.png");
+        rockImage.scale(50, 40);
+        setImage(rockImage);
         
     }
     
     public void act()
     {
         // Add your action code here.
-        move(-1);
+        move(-3);
         if (getX() <= 0)
         {
             resetRock();
+        }
+        else if (isTouching(Person.class))
+        {
+            getWorld().removeObject(this);
         }
         
     }
