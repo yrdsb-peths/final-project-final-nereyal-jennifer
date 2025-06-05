@@ -20,6 +20,8 @@ public class TitleScreen extends World
         setBackground("images/title screen.jpg");
         Person person = new Person();
         addObject(person,189,339);
+        OldLady oldLady = new OldLady();
+        addObject(oldLady, 631, 341);
     }
     
      public void act()

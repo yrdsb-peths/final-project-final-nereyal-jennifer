@@ -31,6 +31,9 @@ public class Person extends Actor
     public boolean wasJumping = false;
     public Person()
     {
+        GreenfootImage standingImage = new GreenfootImage("images/standing.png");
+        standingImage.scale(60, 110);
+        setImage(standingImage);
         for (int i = 0; i < running.length; i++)
         {
             running[i] = new GreenfootImage("images/running/run" + i + ".png");
