@@ -12,11 +12,7 @@ public class Eagle extends Actor
     private int imageIndex = 0;
     public Eagle()
     {
-        for (int i = 0; i < flying.length; i++)
-        {
-            flying[i] = new GreenfootImage("images/eagle/fly" + i + ".png");
-            flying[i].scale(50, 50);
-        }
+        animateEagle();
     }
     public void act()
     {
@@ -38,5 +34,14 @@ public class Eagle extends Actor
             Greenfoot.setWorld(gameOver);
         }
         
+    }
+    
+    public void animateEagle()
+    {
+        for (int i = 0; i < flying.length; i++)
+        {
+            flying[i] = new GreenfootImage("images/eagle/fly" + i + ".png");
+            flying[i].scale(50, 50);
+        }
     }
 }
