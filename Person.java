@@ -52,7 +52,13 @@ public class Person extends Actor
                 runningLeft[i].mirrorHorizontally();
                 runningLeft[i].scale(80, 100);
         }
-        setImage(running[0]);
+        World currentWorld = getWorld();
+        if (currentWorld instanceof MyWorld){
+            setImage(running[0]);
+        }
+        else if (currentWorld instanceof TitleScreen){
+            setImage("images/standing.png");
+        }
     }
     public void animatePerson()
     {

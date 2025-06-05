@@ -1,5 +1,5 @@
 import greenfoot.*;
-
+import java.awt.GraphicsEnvironment;
 public class MyWorld extends World {
     public int score = 0;
     Label scoreLabel;
@@ -122,5 +122,16 @@ public class MyWorld extends World {
     {
         score++;
         scoreLabel.setValue(score);
+    }
+    
+    
+     private void checkAvailableFonts() {
+        //check available font
+        String[] fontNames = GraphicsEnvironment
+            .getLocalGraphicsEnvironment()
+            .getAvailableFontFamilyNames();
+        for (String name : fontNames) {
+            System.out.println(name);
+        }
     }
 }
