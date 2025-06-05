@@ -125,13 +125,14 @@ public class MyWorld extends World {
     }
     
     
-     private void checkAvailableFonts() {
-        //check available font
+     /**
+    private void checkAvailableFonts() {
         String[] fontNames = GraphicsEnvironment
-            .getLocalGraphicsEnvironment()
-            .getAvailableFontFamilyNames();
+        .getLocalGraphicsEnvironment()
+        .getAvailableFontFamilyNames();
         for (String name : fontNames) {
             System.out.println(name);
         }
     }
+    */
 }

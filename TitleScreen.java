@@ -22,6 +22,7 @@ public class TitleScreen extends World
         addObject(person,189,339);
         OldLady oldLady = new OldLady();
         addObject(oldLady, 631, 341);
+        
     }
     
      public void act()
