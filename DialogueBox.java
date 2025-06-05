@@ -20,7 +20,7 @@ public class DialogueBox extends Actor
         image.fill();
         image.setColor(Color.BLACK);
         image.drawRect(0, 0, 199, 49);
-        image.setFont(new Font("SansSerif", 16));
+        image.setFont(new Font("Monaco", 16));
         image.drawString(text, 10, 30);
         setImage(image);
     }
