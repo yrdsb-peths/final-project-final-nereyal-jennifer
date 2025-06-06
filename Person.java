@@ -13,7 +13,7 @@ public class Person extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    private int jumpHeight = 100;
+    private int jumpHeight = 80;
     private boolean isJumping = false;
     private int gravity = 2;
     private int groundLevel = 260;
@@ -22,13 +22,16 @@ public class Person extends Actor
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
     GreenfootImage[] runningLeft = new GreenfootImage[8];
+    GreenfootImage[] attack = new GreenfootImage[6];
     String facing = "right";
     boolean isMoving = false;
     SimpleTimer animationTimer = new SimpleTimer();
     public int runIndex = 0;
     public int jumpIndex = 0;
     public int runLeftIndex = 0;
+    public int attackIndex = 0;
     public boolean wasJumping = false;
+    public boolean attacking = true;
     public Person()
     {
         GreenfootImage standingImage = new GreenfootImage("images/standing.png");
@@ -55,6 +58,11 @@ public class Person extends Actor
                 runningLeft[i].mirrorHorizontally();
                 runningLeft[i].scale(80, 100);
         }
+        for (int i = 0; i < attack.length; i++)
+        {
+            attack[i] = new GreenfootImage("images/attacking/attacking" + i + ".png");
+            attack[i].scale(80, 100);
+        }
         World currentWorld = getWorld();
         if (currentWorld instanceof MyWorld){
             setImage(running[0]);
@@ -78,12 +86,22 @@ public class Person extends Actor
                     runIndex = 0;
                 }
             } 
-            else{
+            else {
                 setImage(running[runIndex]);
                 runIndex = (runIndex + 1) % running.length;
                 if (wasJumping)
                 {
                     jumpIndex = 0;
+                }
+            }
+            
+            if (attacking = true)
+            {
+                setImage(attack[attackIndex]);
+                attackIndex = (attackIndex + 1) % attack.length;
+                if (!attacking)
+                {
+                    attackIndex = 0;
                 }
             }
         }
@@ -136,10 +154,14 @@ public class Person extends Actor
         } 
         else if (currentWorld instanceof MyWorld) {
         
-            if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel) {
+            if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
                 yVelocity = -jumpHeight;
                 isJumping = true;
                 jumpIndex = 0;
+            }
+            if(Greenfoot.isKeyDown("space"))
+            {
+                attacking = true;
             }
         }
     }
@@ -159,7 +181,8 @@ public class Person extends Actor
         }
     }
     
-     public void eat()
+    
+    public void eat()
     {
         if(isTouching(Reward.class))
         {
