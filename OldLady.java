@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class OldLady extends Actor
 {
-    private String[] dialogues = {"ajergb", "kayrgfbauek"};
+    private String[] dialogues = {"ajergb \n e[roughaepirugn", "kayrgfbauek"};
     private int currentDialogueIndex = -1;
     private boolean isNearPerson = false;
     private boolean enterPressed = false;

@@ -87,7 +87,7 @@ public class Person extends Actor
                 }
             }
         }
-        if (currentWorld instanceof TitleScreen){
+        else{
             if(facing.equals("right") && isMoving == true)
             {
                 setImage(running[runIndex]);
@@ -121,7 +121,16 @@ public class Person extends Actor
     {
         isMoving = false;
         World currentWorld = getWorld();
-        if (currentWorld instanceof TitleScreen) {
+         
+        if (currentWorld instanceof MyWorld) {
+        
+            if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel) {
+                yVelocity = -jumpHeight;
+                isJumping = true;
+                jumpIndex = 0;
+            }
+        }
+        else{
         
             if (Greenfoot.isKeyDown("left")) {
                 setLocation(getX() - 2, getY());
@@ -133,15 +142,8 @@ public class Person extends Actor
                 isMoving = true;
                 facing = "right";
             }
-        } 
-        else if (currentWorld instanceof MyWorld) {
-        
-            if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel) {
-                yVelocity = -jumpHeight;
-                isJumping = true;
-                jumpIndex = 0;
-            }
         }
+    
     }
     public void gravity()
     {
@@ -161,12 +163,25 @@ public class Person extends Actor
     
      public void eat()
     {
-        if(isTouching(Reward.class))
-        {
+        World currentWorld = getWorld();
+
+        if (currentWorld instanceof TitleScreen) {
+            if(isTouching(Reward.class))
+            {
             removeTouching(Reward.class);
             MyWorld world = (MyWorld) getWorld();
             world.resetReward();
             world.increaseScore();
+            }   
+        }
+        if (currentWorld instanceof NextGame) {
+            if(isTouching(Reward2.class))
+            {
+            removeTouching(Reward2.class);
+            NextGame world = (NextGame) getWorld();
+            world.spawnReward();
+            world.increaseScore();
+            }   
         }
     }
     
