@@ -142,6 +142,25 @@ public class Person extends Actor
                 isMoving = true;
                 facing = "right";
             }
+<<<<<<< Updated upstream
+=======
+        } 
+        else if (currentWorld instanceof MyWorld) {
+        
+            if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
+                yVelocity = -jumpHeight;
+                isJumping = true;
+                jumpIndex = 0;
+            }
+            if(Greenfoot.isKeyDown("space"))
+            {
+                attacking = true;
+                if (attackIndex == 6)
+                {
+                    attacking = false;
+                }
+            }
+>>>>>>> Stashed changes
         }
     
     }
