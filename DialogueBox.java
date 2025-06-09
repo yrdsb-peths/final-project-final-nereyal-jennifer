@@ -16,9 +16,9 @@ public class DialogueBox extends Actor
     {
         String[] lines = text.split("\n");
 
-        int lineHeight = 22; 
+        int lineHeight = 33; 
         int padding = 10; 
-        int width = 205;
+        int width = 250;
         int height = (lines.length * lineHeight) + padding * 3 + 20;
 
         GreenfootImage image = new GreenfootImage(width, height);
@@ -27,7 +27,7 @@ public class DialogueBox extends Actor
         image.setColor(Color.BLACK);
         image.drawRect(0, 0, width - 1, height - 1);
     
-        Font main = new Font("Monaco", 16);
+        Font main = new Font("Monaco", 12);
         image.setFont(main);
         for (int i = 0; i < lines.length; i++) {
             image.drawString(lines[i], padding, padding + (i + 1) * lineHeight);

@@ -79,7 +79,7 @@ public class MyWorld extends World {
         if(eagleTimer <= 0)
         {
             addObject(new Eagle(), 1000, 150);
-            eagleTimer = Greenfoot.getRandomNumber(70) + 100;
+            eagleTimer = 400;
         }
         
         rockTimer--;
