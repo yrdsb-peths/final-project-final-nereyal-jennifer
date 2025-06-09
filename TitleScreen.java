@@ -8,7 +8,7 @@ import java.awt.Font;
  */
 public class TitleScreen extends World
 {
-    
+    public static boolean spaceHandled = false;
     /**
      * Constructor for objects of class TitleScreen.
      * 
@@ -27,9 +27,13 @@ public class TitleScreen extends World
     
      public void act()
     {
-        if (Greenfoot.isKeyDown("space"))
+        if (Greenfoot.isKeyDown("space") && !spaceHandled)
         {
             Greenfoot.setWorld(new MyWorld());
+            spaceHandled = true;
+        }
+        if (!Greenfoot.isKeyDown("space")) {
+            spaceHandled = false; 
         }
         
     }

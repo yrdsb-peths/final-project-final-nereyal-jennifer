@@ -8,13 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Thanks extends World
 {
-
+    public static boolean spaceHandled = false;
     public Thanks()
     {    
         super(1000, 400, 1); 
         GreenfootImage bg = new GreenfootImage("images/thanks background.jpg");
         
-         int boxWidth = 500;
+        int boxWidth = 500;
         int boxHeight = 150;
         int x = (getWidth() - boxWidth) / 2;
         int y = (getHeight() - boxHeight) / 2;
@@ -28,16 +28,20 @@ public class Thanks extends World
         bg.setColor(Color.BLACK);
         bg.setFont(new Font("Monaco", 24));
         bg.drawString("You finished the game!", x + 100, y + 60);
-        bg.drawString("Click space to play again", x + 80, y + 110);
+        bg.drawString("Click shift to play again", x + 80, y + 110);
         
         setBackground(bg);
         
     }
     public void act()
     {
-        if (Greenfoot.isKeyDown("space"))
+        if (Greenfoot.isKeyDown("shift") && !spaceHandled)
         {
             Greenfoot.setWorld(new TitleScreen());
+            spaceHandled = true;
+        }
+        if (!Greenfoot.isKeyDown("space")) {
+            spaceHandled = false; 
         }
     }
 }

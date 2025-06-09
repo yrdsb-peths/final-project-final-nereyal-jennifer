@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BetweenTwoWorld2 extends World
 {
-
+    public static boolean spaceHandled = false;
     public BetweenTwoWorld2()
     {    
         super(1000, 400, 1); 
@@ -20,8 +20,13 @@ public class BetweenTwoWorld2 extends World
     }
     public void act()
     {
-        if (Greenfoot.isKeyDown("space")) {
-                Greenfoot.setWorld(new Thanks());
+        if (Greenfoot.isKeyDown("space") && !spaceHandled)
+        {
+            Greenfoot.setWorld(new Thanks());
+            spaceHandled = true;
+        }
+        if (!Greenfoot.isKeyDown("space")) {
+            spaceHandled = false; 
         }
     }
 }
