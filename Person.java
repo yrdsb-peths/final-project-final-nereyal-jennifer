@@ -57,6 +57,7 @@ public class Person extends Actor
                 runningLeft[i].mirrorHorizontally();
                 runningLeft[i].scale(80, 100);
         }
+        
         World currentWorld = getWorld();
         if (currentWorld instanceof MyWorld){
             setImage(running[0]);
@@ -107,6 +108,7 @@ public class Person extends Actor
                 
             }
         }
+    
     }
     public void act()
     {
@@ -156,7 +158,7 @@ public class Person extends Actor
             if(Greenfoot.isKeyDown("space"))
             {
                 attacking = true;
-                if (attackIndex == 6)
+                if (attackIndex == 5)
                 {
                     attacking = false;
                 }
