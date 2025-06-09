@@ -28,7 +28,7 @@ public class NextGame extends World
         spawnReward();
     }
     public void act(){
-        if (score == 20){
+        if (score == 3){
             Greenfoot.setWorld(new BetweenTwoWorld2());
         }
     }

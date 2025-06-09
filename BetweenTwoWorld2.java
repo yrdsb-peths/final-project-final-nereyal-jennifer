@@ -20,10 +20,8 @@ public class BetweenTwoWorld2 extends World
     }
     public void act()
     {
-        if (Greenfoot.isKeyDown("space"))
-        {
-            NextGame gameWorld = new NextGame();
-            Greenfoot.setWorld(gameWorld);
+        if (Greenfoot.isKeyDown("space")) {
+                Greenfoot.setWorld(new Thanks());
         }
     }
 }
