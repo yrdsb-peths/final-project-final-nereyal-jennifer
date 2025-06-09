@@ -33,7 +33,7 @@ public class DialogueBox extends Actor
             image.drawString(lines[i], padding, padding + (i + 1) * lineHeight);
         }
         
-            String hint = "Enter → Next, Space →start ";
+            String hint = "Enter → Next";
             Font hintFont = new Font("Monaco", 12);
             image.setFont(hintFont);
             image.drawString(hint, padding, height - 5);

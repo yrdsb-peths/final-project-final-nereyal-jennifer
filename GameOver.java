@@ -34,11 +34,11 @@ public class GameOver extends World
         bg.setColor(Color.BLACK);
         bg.setFont(new Font("Monaco", 24));
         bg.drawString("You lose!", x + 200, y + 60);
-        bg.drawString("Click space to play again", x + 80, y + 110);
+        bg.drawString("Click shift to play again", x + 80, y + 110);
     }
     public void act()
     {
-        if (Greenfoot.isKeyDown("space") && !spaceHandled)
+        if (Greenfoot.isKeyDown("shift") && !spaceHandled)
         {
             Greenfoot.setWorld(new TitleScreen());
             spaceHandled = true;
