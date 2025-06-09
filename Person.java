@@ -28,7 +28,9 @@ public class Person extends Actor
     public int runIndex = 0;
     public int jumpIndex = 0;
     public int runLeftIndex = 0;
+    public int attackIndex = 0;
     public boolean wasJumping = false;
+    public boolean attacking = false;
     public Person()
     {
         GreenfootImage standingImage = new GreenfootImage("images/standing.png");
@@ -142,10 +144,9 @@ public class Person extends Actor
                 isMoving = true;
                 facing = "right";
             }
-<<<<<<< Updated upstream
-=======
+
         } 
-        else if (currentWorld instanceof MyWorld) {
+        if (currentWorld instanceof MyWorld) {
         
             if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
                 yVelocity = -jumpHeight;
@@ -160,7 +161,6 @@ public class Person extends Actor
                     attacking = false;
                 }
             }
->>>>>>> Stashed changes
         }
     
     }
