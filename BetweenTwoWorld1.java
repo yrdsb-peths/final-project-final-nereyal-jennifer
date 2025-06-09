@@ -1,39 +1,33 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.Font;
+
 /**
- * Write a description of class TitleScreen here.
+ * Write a description of class BetweenTwoWorld here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TitleScreen extends World
+public class BetweenTwoWorld1 extends World
 {
-    
+
     /**
-     * Constructor for objects of class TitleScreen.
+     * Constructor for objects of class BetweenTwoWorld.
      * 
      */
-    public TitleScreen()
+    public BetweenTwoWorld1()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 400, 1); 
         setBackground("images/title screen.jpg");
         Person person = new Person();
         addObject(person,189,339);
         OldLady oldLady = new OldLady();
         addObject(oldLady, 631, 341);
-        
     }
-    
-     public void act()
+    public void act()
     {
         if (Greenfoot.isKeyDown("space"))
         {
-            MyWorld gameWorld = new MyWorld();
+            NextGame gameWorld = new NextGame();
             Greenfoot.setWorld(gameWorld);
         }
-        
     }
-    
-    
 }

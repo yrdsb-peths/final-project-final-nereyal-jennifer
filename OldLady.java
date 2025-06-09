@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class OldLady extends Actor
 {
-    private String[] dialogues = {"ajergb \n e[roughaepirugn", "kayrgfbauek"};
+    private String[] dialogues1 = {";zkjdgn", "jszdhvbf"};
+    private String[] dialogues2 = {"sihbfg", "jaiehfb"};
+    private String[] dialogues3 = {"Wubht4 ", "jaehfb"};
     private int currentDialogueIndex = -1;
     private boolean isNearPerson = false;
     private boolean enterPressed = false;
     private int dialogueIndex = 0;
     private DialogueBox dialogueBox;
-    
     public OldLady()
     {
         setImage("old lady.png");
@@ -47,33 +48,99 @@ public class OldLady extends Actor
     }
 
     private void handleDialogueInput() {
-        if (isNearPerson && Greenfoot.isKeyDown("enter")) {
-            if (!enterPressed) {
-                currentDialogueIndex++;
-                if (currentDialogueIndex < dialogues.length) {
-                    showDialogue();
-                } 
-                else {
-                    removeDialogue();
-                    isNearPerson = false;
-                    currentDialogueIndex = -1;
-                }
-                enterPressed = true;
-            }
-        } 
-        else if (!Greenfoot.isKeyDown("enter")) {
+        World currentWorld = getWorld();
+        if (currentWorld instanceof TitleScreen){
+            if (isNearPerson && Greenfoot.isKeyDown("enter")) {
+                if (!enterPressed) {
+                    currentDialogueIndex++;
+                    if (currentDialogueIndex < dialogues1.length) {
+                        showDialogue();
+                    } 
+                    else {
+                        removeDialogue();
+                        isNearPerson = false;
+                        currentDialogueIndex = -1;
+                    }
+                    enterPressed = true;
+                }   
+            } 
+            else if (!Greenfoot.isKeyDown("enter")) {
             enterPressed = false;
+            }   
         }
+        
+        else if (currentWorld instanceof BetweenTwoWorld1){
+            if (isNearPerson && Greenfoot.isKeyDown("enter")) {
+                if (!enterPressed) {
+                    currentDialogueIndex++;
+                    if (currentDialogueIndex < dialogues2.length) {
+                        showDialogue();
+                    } 
+                    else {
+                        removeDialogue();
+                        isNearPerson = false;
+                        currentDialogueIndex = -1;
+                    }
+                    enterPressed = true;
+                }
+            } 
+            else if (!Greenfoot.isKeyDown("enter")) {
+                enterPressed = false;
+            }
+        }
+        else if (currentWorld instanceof BetweenTwoWorld2){
+            if (isNearPerson && Greenfoot.isKeyDown("enter")) {
+                if (!enterPressed) {
+                    currentDialogueIndex++;
+                    if (currentDialogueIndex < dialogues3.length) {
+                        showDialogue();
+                    } 
+                    else {
+                        removeDialogue();
+                        isNearPerson = false;
+                        currentDialogueIndex = -1;
+                    }
+                    enterPressed = true;
+                }
+            } 
+            else if (!Greenfoot.isKeyDown("enter")) {
+                enterPressed = false;
+            }
+        }
+        
     }
 
     private void showDialogue() {
-        if (dialogueBox == null) {
-            dialogueBox = new DialogueBox(dialogues[currentDialogueIndex]);
+        World currentWorld = getWorld();
+        if (currentWorld instanceof TitleScreen){
+            if (dialogueBox == null) {
+            dialogueBox = new DialogueBox(dialogues1[currentDialogueIndex]);
             getWorld().addObject(dialogueBox, getX() + 100, getY() - 60);
-        } 
-        else {
-            dialogueBox.setText(dialogues[currentDialogueIndex]);
+            } 
+            else {
+                dialogueBox.setText(dialogues1[currentDialogueIndex]);
+            }
         }
+        
+        else if (currentWorld instanceof BetweenTwoWorld1){
+            if (dialogueBox == null) {
+                dialogueBox = new DialogueBox(dialogues2[currentDialogueIndex]);
+                getWorld().addObject(dialogueBox, getX() + 100, getY() - 60);
+            } 
+            else {
+                dialogueBox.setText(dialogues2[currentDialogueIndex]);
+            }
+        }
+        else if (currentWorld instanceof BetweenTwoWorld2){
+            if (dialogueBox == null) {
+                dialogueBox = new DialogueBox(dialogues3[currentDialogueIndex]);
+                getWorld().addObject(dialogueBox, getX() + 100, getY() - 60);
+            } 
+            else {
+                dialogueBox.setText(dialogues3[currentDialogueIndex]);
+            }
+        }
+        
     }      
 
     private void removeDialogue() {

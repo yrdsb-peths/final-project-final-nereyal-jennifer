@@ -23,5 +23,12 @@ public class GameOver extends World
         Person person = new Person();
         addObject(person, 500, 200);
     }
-    
+    public void act()
+    {
+        if (Greenfoot.isKeyDown("space"))
+        {
+            Greenfoot.setWorld(new TitleScreen());
+        }
+        
+    }
 }

@@ -88,6 +88,9 @@ public class MyWorld extends World {
             addObject(new Rock(), 1000, 300);
             rockTimer = Greenfoot.getRandomNumber((500) + 500);
         }
+        if (score == 20){
+            Greenfoot.setWorld(new BetweenTwoWorld1());
+        }
     }
     private void paint(int position) 
     { 

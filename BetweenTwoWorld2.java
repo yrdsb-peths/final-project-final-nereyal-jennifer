@@ -1,19 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BetweenTwoWorld here.
+ * Write a description of class BetweenTwoWorld2 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class BetweenTwoWorld extends World
+public class BetweenTwoWorld2 extends World
 {
 
-    /**
-     * Constructor for objects of class BetweenTwoWorld.
-     * 
-     */
-    public BetweenTwoWorld()
+    public BetweenTwoWorld2()
     {    
         super(1000, 400, 1); 
         setBackground("images/title screen.jpg");

@@ -28,6 +28,8 @@ public class Person extends Actor
     public int runIndex = 0;
     public int jumpIndex = 0;
     public int runLeftIndex = 0;
+    public boolean attacking = false;
+    public int attackIndex = 0;
     public boolean wasJumping = false;
     public Person()
     {
@@ -124,29 +126,6 @@ public class Person extends Actor
          
         if (currentWorld instanceof MyWorld) {
         
-            if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel) {
-                yVelocity = -jumpHeight;
-                isJumping = true;
-                jumpIndex = 0;
-            }
-        }
-        else{
-        
-            if (Greenfoot.isKeyDown("left")) {
-                setLocation(getX() - 2, getY());
-                isMoving = true;
-                facing = "left";
-            }
-            if (Greenfoot.isKeyDown("right")) {
-                setLocation(getX() + 2, getY());
-                isMoving = true;
-                facing = "right";
-            }
-<<<<<<< Updated upstream
-=======
-        } 
-        else if (currentWorld instanceof MyWorld) {
-        
             if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
                 yVelocity = -jumpHeight;
                 isJumping = true;
@@ -160,8 +139,21 @@ public class Person extends Actor
                     attacking = false;
                 }
             }
->>>>>>> Stashed changes
         }
+        else {
+        
+            if (Greenfoot.isKeyDown("left")) {
+                setLocation(getX() - 2, getY());
+                isMoving = true;
+                facing = "left";
+            }
+            if (Greenfoot.isKeyDown("right")) {
+                setLocation(getX() + 2, getY());
+                isMoving = true;
+                facing = "right";
+            }
+
+        } 
     
     }
     public void gravity()

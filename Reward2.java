@@ -27,6 +27,7 @@ public class Reward2 extends Actor
             world.removeObject(this);
         }
         
+        
     }
     public void setSpeed(int spd)
     {
