@@ -57,6 +57,11 @@ public class Person extends Actor
                 runningLeft[i].mirrorHorizontally();
                 runningLeft[i].scale(80, 100);
         }
+        for (int i = 0; i < attack.length; i++)
+        {
+            attack[i] = new GreenfootImage("images/attacking/attack" + i + ".png");
+            attack[i].scale(80, 100);
+        }
         
         World currentWorld = getWorld();
         if (currentWorld instanceof MyWorld){
@@ -73,6 +78,17 @@ public class Person extends Actor
             return;
         }
         animationTimer.mark();
+        
+        if(attacking)
+        {
+            setImage(attack[attackIndex]);
+            attackIndex = (attackIndex + 1) % attack.length;
+            if (attackIndex == 0)
+            {
+                attacking = false;
+            }
+            return;
+        }
         if (currentWorld instanceof MyWorld){
             if (isJumping || yVelocity < 0) {
                 setImage(jumping[jumpIndex]);
@@ -155,15 +171,13 @@ public class Person extends Actor
                 isJumping = true;
                 jumpIndex = 0;
             }
-            if(Greenfoot.isKeyDown("space"))
+            if(Greenfoot.isKeyDown("enter") && !attacking)
             {
                 attacking = true;
-                if (attackIndex == 5)
-                {
-                    attacking = false;
-                }
+                attackIndex = 0;
             }
         }
+        
     
     }
     public void gravity()
@@ -186,7 +200,7 @@ public class Person extends Actor
     {
         World currentWorld = getWorld();
 
-        if (currentWorld instanceof TitleScreen) {
+        if (currentWorld instanceof MyWorld) {
             if(isTouching(Reward.class))
             {
             removeTouching(Reward.class);

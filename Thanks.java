@@ -28,14 +28,14 @@ public class Thanks extends World
         bg.setColor(Color.BLACK);
         bg.setFont(new Font("Monaco", 24));
         bg.drawString("You finished the game!", x + 100, y + 60);
-        bg.drawString("Click space to play again", x + 80, y + 110);
+        bg.drawString("Click enter to play again", x + 80, y + 110);
         
         setBackground(bg);
         
     }
     public void act()
     {
-        if (Greenfoot.isKeyDown("space"))
+        if (Greenfoot.isKeyDown("enter"))
         {
             Greenfoot.setWorld(new TitleScreen());
         }
