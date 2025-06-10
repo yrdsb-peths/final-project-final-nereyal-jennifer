@@ -14,7 +14,9 @@ public class Reward2 extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Reward2(){
-        setImage("images/apple1.png");
+        GreenfootImage image = new GreenfootImage("images/basil.png");
+        image.scale(70,70);
+        setImage(image);
     }
     public void act()
     {

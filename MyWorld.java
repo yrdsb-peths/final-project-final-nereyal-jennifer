@@ -3,7 +3,6 @@ import java.awt.GraphicsEnvironment;
 public class MyWorld extends World {
     public int score = 0;
     Label scoreLabel;
-    private int wallTimer = 0;
     private int coinTimer = 0;
     public int imageCount = 0;
     Person person = new Person();
@@ -11,8 +10,8 @@ public class MyWorld extends World {
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
-    private int eagleTimer = 0;
-    private int rockTimer = 0;
+    private int eagleTimer = 200;
+    private int rockTimer = 400;
     public MyWorld() {
         super(1000, 400, 1);
         setBackground(bgImage);
@@ -30,40 +29,12 @@ public class MyWorld extends World {
         addObject(reward, 800, 200);
         
         Eagle eagle = new Eagle();
-        addObject(eagle, 1200, 150);
+        addObject(eagle, 1000, 150);
         
         Rock rock = new Rock();
-        addObject(rock, 800, 300);
+        addObject(rock, 600, 300);
          
     }
-    /**
-    public void act()
-    {
-        wallTimer++;
-        coinTimer++;
-        
-        if(wallTimer > 60)
-        {
-            int y = Greenfoot.getRandomNumber(350) + 30;
-            int w = Greenfoot.getRandomNumber(50) + 100;
-            addObject(new Wall1(w), 610, y);
-            wallTimer = 0;
-        }
-        
-        if(coinTimer > 100)
-        {
-            int y = Greenfoot.getRandomNumber(300) + 30;
-            addObject(new Reward(), 610, y);
-            coinTimer = 0;
-        }
-        
-        if(person.getY() > getHeight())
-        {
-            showText("Game Over", getWidth()/2 - 30, getHeight()/2);
-            Greenfoot.stop();
-        }
-    }
-    */
      public void act() 
     { 
             
@@ -80,13 +51,16 @@ public class MyWorld extends World {
         {
             addObject(new Eagle(), 1000, 150);
             eagleTimer = 400;
+            if (rockTimer < 300) {
+                rockTimer = 300;
+            }
         }
         
         rockTimer--;
         if (rockTimer <= 0)
         {
             addObject(new Rock(), 1000, 300);
-            rockTimer = Greenfoot.getRandomNumber((500) + 500);
+            rockTimer = Greenfoot.getRandomNumber((800) + 7000);
         }
         if (score == 20){
             Greenfoot.setWorld(new BetweenTwoWorld1());
