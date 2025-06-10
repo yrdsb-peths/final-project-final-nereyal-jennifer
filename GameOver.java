@@ -33,6 +33,9 @@ public class GameOver extends World
         int x = (bg.getWidth() - textBox.getWidth()) / 2;
         int y = (bg.getHeight() - textBox.getHeight()) / 2;
         bg.drawImage(textBox, x, y);
+        
+        Person person = new Person();
+        addObject(person,500,300);
     }
     public void act()
     {
