@@ -27,6 +27,7 @@ public class NextGame extends World
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
         spawnReward();
+        spawnApple();
     }
     public void act(){
         if (score == 10){
@@ -40,6 +41,14 @@ public class NextGame extends World
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;
         addObject(food, x, y);
+    }
+    public void spawnApple()
+    {
+        PoisonApple apple = new PoisonApple();
+        apple.setSpeed(level);
+        int x = Greenfoot.getRandomNumber(600);
+        int y = 0;
+        addObject(apple, x, y);
     }
     
     public void increaseScore()

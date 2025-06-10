@@ -20,8 +20,19 @@ public class GameOver extends World
         GreenfootImage bg = new GreenfootImage("cemetery1.jpg");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
-        Person person = new Person();
-        addObject(person, 500, 200);
+        GreenfootImage textBox = new GreenfootImage(400, 120);
+        textBox.setColor(new Color(255, 255, 255, 230)); 
+        textBox.fill();
+        textBox.setColor(Color.BLACK);
+        textBox.drawRect(0, 0, 399, 119); 
+        Font font = new Font("Monaco", true, false, 24);
+        textBox.setFont(font);
+        textBox.setColor(Color.BLACK);
+        textBox.drawString("You Lose!", 140, 45);
+        textBox.drawString("Press Enter to Restart", 50, 85);
+        int x = (bg.getWidth() - textBox.getWidth()) / 2;
+        int y = (bg.getHeight() - textBox.getHeight()) / 2;
+        bg.drawImage(textBox, x, y);
     }
     public void act()
     {
