@@ -32,13 +32,14 @@ public class DialogueBox extends Actor
         for (int i = 0; i < lines.length; i++) {
             image.drawString(lines[i], padding, padding + (i + 1) * lineHeight);
         }
-        
+        World currentWorld = getWorld();
             String hint = "Enter → Next";
             Font hintFont = new Font("Monaco", 12);
             image.setFont(hintFont);
             image.drawString(hint, padding, height - 5);
         
             setImage(image);
+        
         
     }
         

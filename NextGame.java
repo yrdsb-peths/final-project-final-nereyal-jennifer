@@ -10,6 +10,7 @@ public class NextGame extends World
 {
     public int score = 0;
     Label scoreLabel;
+    int level = 1;
     /**
      * Constructor for objects of class ThemePage.
      * 
@@ -35,6 +36,7 @@ public class NextGame extends World
     public void spawnReward()
     {
         Reward2 food = new Reward2();
+        food.setSpeed(level);
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;
         addObject(food, x, y);
@@ -44,5 +46,8 @@ public class NextGame extends World
     {
         score++;
         scoreLabel.setValue(score);
+        if (score % 5 == 0){
+            level += 1;
+        }
     }
 }
