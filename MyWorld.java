@@ -32,7 +32,7 @@ public class MyWorld extends World {
         addObject(eagle, 1000, 150);
         
         Rock rock = new Rock();
-        addObject(rock, 600, 300);
+        addObject(rock, 900, 300);
          
     }
      public void act() 
