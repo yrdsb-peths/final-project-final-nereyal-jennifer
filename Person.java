@@ -23,6 +23,7 @@ public class Person extends Actor
     GreenfootImage[] jumping = new GreenfootImage[8];
     GreenfootImage[] runningLeft = new GreenfootImage[8];
     GreenfootImage[] attack = new GreenfootImage[6];
+    GreenfootSound jumpSound = new GreenfootSound("jump-up-245782.mp3");
     
     String facing = "right";
     boolean isMoving = false;
@@ -152,6 +153,7 @@ public class Person extends Actor
                 yVelocity = -jumpHeight;
                 isJumping = true;
                 jumpIndex = 0;
+                jumpSound.play();
             }
         }
         else{
