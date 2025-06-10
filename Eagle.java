@@ -19,7 +19,7 @@ public class Eagle extends Actor
         // Add your action code here.
         imageIndex = (imageIndex + 1) % flying.length;
         setImage(flying[imageIndex]);
-        move(-3);
+        move(-2);
         MyWorld world= (MyWorld) getWorld();
         if(getX() <= 0)
         {
