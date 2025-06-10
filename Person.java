@@ -88,7 +88,7 @@ public class Person extends Actor
         }
         animationTimer.mark();
         
-        /**if(attacking)
+        if(attacking)
         {
             setImage(attack[attackIndex]);
             attackIndex = (attackIndex + 1) % attack.length;
@@ -98,7 +98,7 @@ public class Person extends Actor
             }
             return;
         }
-        */
+        
         if (currentWorld instanceof MyWorld){
             if (isJumping || yVelocity < 0) {
                 setImage(jumping[jumpIndex]);
@@ -136,8 +136,15 @@ public class Person extends Actor
         }
         if(currentWorld instanceof GameOver)
         {
-            setImage(die[dieIndex]);
-            dieIndex = (dieIndex + 1) % die.length;
+            setImage(die[0]);
+            setImage(die[0]);
+            setImage(die[0]);
+            setImage(die[1]);
+            setImage(die[2]);
+            setImage(die[2]);
+            setImage(die[2]);
+            setImage(die[3]);
+            setImage(die[4]);
         }
     
     }
