@@ -22,6 +22,7 @@ public class Person extends Actor
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
     GreenfootImage[] runningLeft = new GreenfootImage[8];
+    GreenfootImage[] attack = new GreenfootImage[6];
     String facing = "right";
     boolean isMoving = false;
     SimpleTimer animationTimer = new SimpleTimer();
@@ -59,8 +60,8 @@ public class Person extends Actor
         }
         for (int i = 0; i < attack.length; i++)
         {
-            attack[i] = new GreenfootImage("images/attacking/attack" + i + ".png");
-            attack[i].scale(80, 100);
+            attack[i] = new GreenfootImage("images/attacking/attacking" + i + ".png");
+            attack[i].scale(100, 130);
         }
         
         World currentWorld = getWorld();
@@ -144,7 +145,7 @@ public class Person extends Actor
          
         if (currentWorld instanceof MyWorld) {
         
-            if (Greenfoot.isKeyDown("space") && !isJumping && getY() >= groundLevel) {
+            if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
                 yVelocity = -jumpHeight;
                 isJumping = true;
                 jumpIndex = 0;
@@ -171,7 +172,7 @@ public class Person extends Actor
                 isJumping = true;
                 jumpIndex = 0;
             }
-            if(Greenfoot.isKeyDown("enter") && !attacking)
+            if(Greenfoot.isKeyDown("space") && !attacking)
             {
                 attacking = true;
                 attackIndex = 0;
