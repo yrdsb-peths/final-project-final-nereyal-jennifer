@@ -23,6 +23,7 @@ public class Person extends Actor
     GreenfootImage[] jumping = new GreenfootImage[8];
     GreenfootImage[] runningLeft = new GreenfootImage[8];
     GreenfootImage[] attack = new GreenfootImage[6];
+    
     String facing = "right";
     boolean isMoving = false;
     SimpleTimer animationTimer = new SimpleTimer();
