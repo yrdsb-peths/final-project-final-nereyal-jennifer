@@ -1,7 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BetweenTwoWorld2 here.
+ * BetweenTwoWorld2 is a transition screen between stages of the gae
+ * contains player and OldLady character
+ * lets player space to begin next part of the game
+ * 
+ * 
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -18,6 +22,10 @@ public class BetweenTwoWorld2 extends World
         OldLady oldLady = new OldLady();
         addObject(oldLady, 631, 341);
     }
+    
+    /**
+     * Watches for space key press to transition to next level
+     */
     public void act()
     {
         if (Greenfoot.isKeyDown("space") && !spaceHandled)

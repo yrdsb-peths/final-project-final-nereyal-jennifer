@@ -1,17 +1,25 @@
 import greenfoot.*;
 import java.awt.GraphicsEnvironment;
 public class MyWorld extends World {
+    //score tracking
     public int score = 0;
     Label scoreLabel;
-    private int coinTimer = 0;
-    public int imageCount = 0;
+    
+    //add person
     Person person = new Person();
+    
+    //background scrolling variables
     private GreenfootImage bgImage = new GreenfootImage("background.jpg");
     private int scrollSpeed = 1; 
     private GreenfootImage scrollingImage; 
     private int scrollPosition = 0; 
+    
+    //spawning timers for eagles and rocks
     private int eagleTimer = 200;
     private int rockTimer = 400;
+    /**
+     * constructor to add lavel, mushroom, eagle, rock, and background
+     */
     public MyWorld() {
         super(1000, 400, 1);
         setBackground(bgImage);
@@ -33,6 +41,10 @@ public class MyWorld extends World {
         addObject(rock, 900, 300);
          
     }
+    /**
+     * Act has background and scrolling, eagle and rock spawning
+     * transition to next world if 20 mushrooms collected
+     */
      public void act() 
     { 
             
@@ -49,6 +61,7 @@ public class MyWorld extends World {
         {
             addObject(new Eagle(), 1000, 150);
             eagleTimer = 400;
+            //make sure rocks don't spawn too soon after eagle
             if (rockTimer < 300) {
                 rockTimer = 300;
             }
@@ -64,6 +77,8 @@ public class MyWorld extends World {
             Greenfoot.setWorld(new BetweenTwoWorld1());
         }
     }
+    
+    //scroll background based on Greenfoot guide
     private void paint(int position) 
     { 
          GreenfootImage bg = getBackground(); 
@@ -75,6 +90,7 @@ public class MyWorld extends World {
              bg.drawImage(scrollingImage, position + scrollingImage.getWidth(), 0); 
          } 
     }
+    //respawn a mushroom at a random vertical position
     public void resetReward()
     {
         Mushroom mushroom = new Mushroom();
@@ -93,6 +109,7 @@ public class MyWorld extends World {
     
     }
     
+    //increase score by 1 and update labe
     public void increaseScore()
     {
         score++;

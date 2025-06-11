@@ -1,16 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Tree here.
+ * The Rock class is an obstacle that moves left across the screen
+* If it hits the player (Person), the game ends
+* If it goes off screen, it resets to the right side
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jennifer and Nereyal
+ * @version June 2025
  */
 public class Rock extends Actor
 {
     /**
-     * Act - do whatever the Tree wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor sets the image of the rock and scales it
      */
     public Rock()
     {
@@ -19,15 +20,21 @@ public class Rock extends Actor
         setImage(rockImage);
         
     }
+    /**
+     * Moves the rock left
+     * Resets its position if it touches the player (Person)
+     */
     
     public void act()
     {
-        // Add your action code here.
         move(-1);
+        
+        //If rock goes off the left edge, reposition it
         if (getX() <= 0)
         {
             resetRock();
         }
+        //If rock touches the player and they aren't jumping over it, end teh game
         else if (isTouching(Person.class))
         {
             getWorld().removeObject(this);
@@ -36,10 +43,12 @@ public class Rock extends Actor
         }
         
     }
-    
+    /**
+     * Resets the rock's position to the right side of the screen
+     */
     public void resetRock()
     {
-        setLocation(700, 300);
+        setLocation(1000, 300);
     }
     
 }
