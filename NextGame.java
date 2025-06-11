@@ -36,7 +36,7 @@ public class NextGame extends World
     }
     public void spawnReward()
     {
-        Reward2 food = new Reward2();
+        Basil food = new Basil();
         food.setSpeed(level);
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;

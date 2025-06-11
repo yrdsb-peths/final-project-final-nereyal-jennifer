@@ -22,11 +22,9 @@ public class MyWorld extends World {
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
         
-        //Tree tree = new Tree();
-        //addObject(tree, 150, 300);
         
-        Reward reward = new Reward();
-        addObject(reward, 800, 200);
+        Mushroom mushroom = new Mushroom();
+        addObject(mushroom, 800, 200);
         
         Eagle eagle = new Eagle();
         addObject(eagle, 1000, 150);
@@ -79,7 +77,7 @@ public class MyWorld extends World {
     }
     public void resetReward()
     {
-        Reward reward = new Reward();
+        Mushroom mushroom = new Mushroom();
         int num = Greenfoot.getRandomNumber(2);
         int x = 1000;
         int y = 0;
@@ -91,7 +89,7 @@ public class MyWorld extends World {
         {
             y = 300;
         }
-        addObject(reward, x, y);
+        addObject(mushroom, x, y);
     
     }
     

@@ -221,18 +221,18 @@ public class Person extends Actor
         World currentWorld = getWorld();
 
         if (currentWorld instanceof MyWorld) {
-            if(isTouching(Reward.class))
+            if(isTouching(Mushroom.class))
             {
-                    removeTouching(Reward.class);
+                    removeTouching(Mushroom.class);
                     MyWorld world = (MyWorld) getWorld();
                     world.resetReward();
                     world.increaseScore();
             }   
         }
         if (currentWorld instanceof NextGame) {
-            if(isTouching(Reward2.class))
+            if(isTouching(Basil.class))
             {
-            removeTouching(Reward2.class);
+            removeTouching(Basil.class);
             NextGame world = (NextGame) getWorld();
             world.spawnReward();
             world.increaseScore();

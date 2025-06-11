@@ -6,14 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Reward2 extends Actor
+public class Basil extends Actor
 {
     int speed = 1;
     /**
      * Act - do whatever the Insect wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Reward2(){
+    public Basil(){
         GreenfootImage image = new GreenfootImage("images/basil.png");
         image.scale(30,30);
         setImage(image);
