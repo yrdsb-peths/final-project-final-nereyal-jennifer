@@ -23,6 +23,7 @@ public class Person extends Actor
     GreenfootImage[] jumping = new GreenfootImage[8];
     GreenfootImage[] runningLeft = new GreenfootImage[8];
     GreenfootImage[] attack = new GreenfootImage[6];
+    GreenfootImage[] die = new GreenfootImage[5];
     GreenfootSound jumpSound = new GreenfootSound("jump-up-245782.mp3");
     
     String facing = "right";
@@ -136,6 +137,12 @@ public class Person extends Actor
             }
         }
     
+        if(currentWorld instanceof GameOver)
+        {
+            setImage(die[dieIndex]);
+            dieIndex = (dieIndex + 1) % die.length;
+        }
+    
     }
     public void act()
     {
@@ -143,8 +150,9 @@ public class Person extends Actor
         World currentWorld = getWorld();
         checkKeys();
         gravity();
-        eat();
+        getReward();
         animatePerson();
+        attackEagle();
 
     }
 
@@ -208,17 +216,17 @@ public class Person extends Actor
         }
     }
     
-     public void eat()
+     public void getReward()
     {
         World currentWorld = getWorld();
 
         if (currentWorld instanceof MyWorld) {
             if(isTouching(Reward.class))
             {
-            removeTouching(Reward.class);
-            MyWorld world = (MyWorld) getWorld();
-            world.resetReward();
-            world.increaseScore();
+                    removeTouching(Reward.class);
+                    MyWorld world = (MyWorld) getWorld();
+                    world.resetReward();
+                    world.increaseScore();
             }   
         }
         if (currentWorld instanceof NextGame) {
@@ -231,6 +239,12 @@ public class Person extends Actor
             }   
         }
     }
-    
+    public void attackEagle()
+    {
+        if (attacking && isTouching(Eagle.class))
+        {
+            removeTouching(Eagle.class);
+        }
+    }
 }
 
