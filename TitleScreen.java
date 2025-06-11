@@ -25,7 +25,7 @@ public class TitleScreen extends World
         addObject(person,189,339);
         OldLady oldLady = new OldLady();
         addObject(oldLady, 631, 341);
-        dialogueBox = new DialogueBox("Welcome to the game \nyour first mission is find the \nold lady and approach to her \nIgnore the hint below for now");
+        dialogueBox = new DialogueBox("GRANDMA'S DISH \n Welcome to the game \nyour first mission is find the \nold lady and approach her \nIgnore the hint below for now");
         addObject(dialogueBox, getWidth()/2, 100);
     }
     

@@ -32,6 +32,7 @@ public class Person extends Actor
     public int jumpIndex = 0;
     public int runLeftIndex = 0;
     public int attackIndex = 0;
+    public int dieIndex = 0;
     public boolean wasJumping = false;
     public boolean attacking = false;
     public Person()
@@ -60,12 +61,17 @@ public class Person extends Actor
                 runningLeft[i].mirrorHorizontally();
                 runningLeft[i].scale(80, 100);
         }
-        /**for (int i = 0; i < attack.length; i++)
+        for (int i = 0; i < attack.length; i++)
         {
             attack[i] = new GreenfootImage("images/attacking/attacking" + i + ".png");
             attack[i].scale(100, 130);
         }
-        */
+        for (int i = 0; i < die.length; i++)
+        {
+            die[i] = new GreenfootImage("images/dying/death" + i + ".png");
+            die[i].scale(80, 100);
+        }
+        
         
         World currentWorld = getWorld();
         if (currentWorld instanceof MyWorld){
@@ -83,7 +89,7 @@ public class Person extends Actor
         }
         animationTimer.mark();
         
-        /**if(attacking)
+        if(attacking)
         {
             setImage(attack[attackIndex]);
             attackIndex = (attackIndex + 1) % attack.length;
@@ -93,7 +99,7 @@ public class Person extends Actor
             }
             return;
         }
-        */
+        
         if (currentWorld instanceof MyWorld){
             if (isJumping || yVelocity < 0) {
                 setImage(jumping[jumpIndex]);
