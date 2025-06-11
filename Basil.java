@@ -1,23 +1,29 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class reward2 here.
+ * Basil is a reward object that moves down the screen
+ * If collected or reaches the bottom, it is removed and the world is notified
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nereyal & Jennifer
+ * @version June 2025
  */
 public class Basil extends Actor
 {
     int speed = 1;
     /**
-     * Act - do whatever the Insect wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor sets the basil image and scales it
      */
     public Basil(){
         GreenfootImage image = new GreenfootImage("images/basil.png");
         image.scale(30,30);
         setImage(image);
     }
+    
+    /**
+     * Moves the basil down each frame
+     * If it reaches the bottom of the screen, game over 
+     * and the world is signaled
+     */
     public void act()
     {
         // Add your action code here.
@@ -31,6 +37,10 @@ public class Basil extends Actor
         
         
     }
+    
+    /**
+     * increases the speed of the basil
+     */
     public void setSpeed(int spd)
     {
         speed = spd;

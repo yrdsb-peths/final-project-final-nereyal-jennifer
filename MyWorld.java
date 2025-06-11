@@ -99,15 +99,4 @@ public class MyWorld extends World {
         scoreLabel.setValue(score);
     }
     
-    
-     /**
-    private void checkAvailableFonts() {
-        String[] fontNames = GraphicsEnvironment
-        .getLocalGraphicsEnvironment()
-        .getAvailableFontFamilyNames();
-        for (String name : fontNames) {
-            System.out.println(name);
-        }
-    }
-    */
 }

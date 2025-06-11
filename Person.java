@@ -2,30 +2,31 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Person is the main playable character
+ * It can run, jump, attack, and collect rewards
  * 
  * @author Nereyal
- * @version May 2025
+ * @version June 2025
  */
 public class Person extends Actor
 {
-    /**
-     * Act - do whatever the Person wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-
+    //Movement, velocity/gravity aspect taken from online Greenfoot guide
     private int jumpHeight = 80;
     private boolean isJumping = false;
     private int gravity = 2;
     private int groundLevel = 260;
     private int yVelocity = 0;
     
+    //Animation 
     GreenfootImage[] running = new GreenfootImage[8];
     GreenfootImage[] jumping = new GreenfootImage[8];
     GreenfootImage[] runningLeft = new GreenfootImage[8];
     GreenfootImage[] attack = new GreenfootImage[6];
     GreenfootImage[] die = new GreenfootImage[5];
+    
+    //sound
     GreenfootSound jumpSound = new GreenfootSound("jump-up-245782.mp3");
     
+    //direction and animation frame tracking
     String facing = "right";
     boolean isMoving = false;
     SimpleTimer animationTimer = new SimpleTimer();
@@ -36,11 +37,16 @@ public class Person extends Actor
     public int dieIndex = 0;
     public boolean wasJumping = false;
     public boolean attacking = false;
+    
+    /**
+     * Constructor to upload/scale images of character animations
+     */
     public Person()
     {
         GreenfootImage standingImage = new GreenfootImage("images/standing.png");
         standingImage.scale(60, 110);
         setImage(standingImage);
+        //running, jumping, left facing, attack, and death images
         for (int i = 0; i < running.length; i++)
         {
             running[i] = new GreenfootImage("images/running/run" + i + ".png");
@@ -73,7 +79,7 @@ public class Person extends Actor
             die[i].scale(80, 100);
         }
         
-        
+        //set default image based on world
         World currentWorld = getWorld();
         if (currentWorld instanceof MyWorld){
             setImage(running[0]);
@@ -82,18 +88,40 @@ public class Person extends Actor
             setImage("images/standing.png");
         }
     }
+    
+    /**
+     * Act called on every time. Handles movement, animation, and interactions.
+     */
+    public void act()
+    {
+        
+        World currentWorld = getWorld();
+        checkKeys();
+        gravity();
+        getReward();
+        animatePerson();
+        attackEagle();
+
+    }
+    /**
+     * Animates the character based on movement or attack state.
+     */
     public void animatePerson()
     {
+        //animation depends on the specific world, use timer to determine frame
         World currentWorld = getWorld();
         if (animationTimer.millisElapsed() < 100) { 
             return;
         }
         animationTimer.mark();
         
+        //attack animation if space bar clicked (attacking true)
         if(attacking)
         {
             setImage(attack[attackIndex]);
+            //keep adding to attackIndex (animation pic number)
             attackIndex = (attackIndex + 1) % attack.length;
+            //set attacking to false once animation done
             if (attackIndex == 0)
             {
                 attacking = false;
@@ -101,6 +129,7 @@ public class Person extends Actor
             return;
         }
         
+        //allow jumping when in first game (MyWorld)
         if (currentWorld instanceof MyWorld){
             if (isJumping || yVelocity < 0) {
                 setImage(jumping[jumpIndex]);
@@ -110,6 +139,7 @@ public class Person extends Actor
                 }
             } 
             else{
+                //set running if not jumping/attacking
                 setImage(running[runIndex]);
                 runIndex = (runIndex + 1) % running.length;
                 if (wasJumping)
@@ -119,6 +149,7 @@ public class Person extends Actor
             }
         }
         else{
+            //be able to move left and right in any world but first game
             if(facing.equals("right") && isMoving == true)
             {
                 setImage(running[runIndex]);
@@ -136,7 +167,8 @@ public class Person extends Actor
                 
             }
         }
-    
+        
+        //death animation in game over screen
         if(currentWorld instanceof GameOver)
         {
             setImage(die[dieIndex]);
@@ -144,17 +176,9 @@ public class Person extends Actor
         }
     
     }
-    public void act()
-    {
-        
-        World currentWorld = getWorld();
-        checkKeys();
-        gravity();
-        getReward();
-        animatePerson();
-        attackEagle();
-
-    }
+    /**
+     * checkKeys looks at inputs from keys for movement, jumping, and attacking.
+     */
 
     public void checkKeys()
     {
@@ -162,16 +186,18 @@ public class Person extends Actor
         World currentWorld = getWorld();
          
         if (currentWorld instanceof MyWorld) {
-        
+            //if up key pressed and not already jumping, then jump
             if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
                 yVelocity = -jumpHeight;
                 isJumping = true;
+                //start jump animation
                 jumpIndex = 0;
+                //play jump sound
                 jumpSound.play();
             }
         }
         else{
-        
+            //if left or right key pressed, run left or right by 2
             if (Greenfoot.isKeyDown("left")) {
                 setLocation(getX() - 2, getY());
                 isMoving = true;
@@ -185,12 +211,13 @@ public class Person extends Actor
 
         } 
         if (currentWorld instanceof MyWorld) {
-        
+            //if up key pressed and not already jumping, jump
             if (Greenfoot.isKeyDown("up") && !isJumping && getY() >= groundLevel) {
                 yVelocity = -jumpHeight;
                 isJumping = true;
                 jumpIndex = 0;
             }
+            //if space key pressed and not already attacking, attack
             if(Greenfoot.isKeyDown("space") && !attacking)
             {
                 attacking = true;
@@ -200,13 +227,17 @@ public class Person extends Actor
         
     
     }
+    /**
+     * Applies gravity and keeps the player on the ground
+     */
     public void gravity()
     {
         World currentWorld = getWorld();
-
         if (currentWorld instanceof MyWorld) {
+            //add gravity to the speed to bring it down 
             yVelocity += gravity;
             setLocation(getX(), getY() + yVelocity/10);
+            //back on ground, not jumping anymore
             if (getY() >= groundLevel)
             {
                 setLocation(getX(), groundLevel);
@@ -216,6 +247,10 @@ public class Person extends Actor
         }
     }
     
+    /**
+     * getReward collects rewards like mushrooms or 
+     * basil depending on the world
+     */
      public void getReward()
     {
         World currentWorld = getWorld();
@@ -223,22 +258,25 @@ public class Person extends Actor
         if (currentWorld instanceof MyWorld) {
             if(isTouching(Mushroom.class))
             {
-                    removeTouching(Mushroom.class);
-                    MyWorld world = (MyWorld) getWorld();
-                    world.resetReward();
-                    world.increaseScore();
+                removeTouching(Mushroom.class);
+                MyWorld world = (MyWorld) getWorld();
+                world.resetReward();
+                world.increaseScore();
             }   
         }
         if (currentWorld instanceof NextGame) {
             if(isTouching(Basil.class))
             {
-            removeTouching(Basil.class);
-            NextGame world = (NextGame) getWorld();
-            world.spawnReward();
-            world.increaseScore();
+                removeTouching(Basil.class);
+                NextGame world = (NextGame) getWorld();
+                world.spawnReward();
+                world.increaseScore();
             }   
         }
     }
+    /**
+     * Removes eagle if touching the eagle and currently attacking
+     */
     public void attackEagle()
     {
         if (attacking && isTouching(Eagle.class))

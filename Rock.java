@@ -14,7 +14,7 @@ public class Rock extends Actor
      */
     public Rock()
     {
-        GreenfootImage rockImage = new GreenfootImage("images/ezgif-4761526e8cf023.png");
+        GreenfootImage rockImage = new GreenfootImage("images/rock.png");
         rockImage.scale(50, 40);
         setImage(rockImage);
         

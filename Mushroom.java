@@ -1,16 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Reward here.
+ * Mushroom is a reward object that moves left across the screen
+ * If collected or moved off screen, it is removed and the world is told
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nereyal & Jennifer
+ * @version June 2025
  */
 public class Mushroom extends Actor
 {
     /**
-     * Act - do whatever the Reward wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor sets the mushroom image and scales it 
      */
     public Mushroom()
     {
@@ -19,6 +19,11 @@ public class Mushroom extends Actor
         setImage(image);
     }
     
+    /**
+     * Moves the mushroom left each frame
+     * if it reaches the left edge of the screen, it is removed,
+     * and the world is signaled to reset the reward
+     */
     public void act()
     {
         // Add your action code here.
