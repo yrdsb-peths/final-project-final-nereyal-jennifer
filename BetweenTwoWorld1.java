@@ -31,6 +31,8 @@ public class BetweenTwoWorld1 extends World
         addObject(person,189,339);
         OldLady oldLady = new OldLady();
         addObject(oldLady, 631, 341);
+        
+        MusicPlayer.playLoop();
     }
     /**
      * watches for space key press ot transition to next level (gameWorld)

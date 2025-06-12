@@ -40,6 +40,7 @@ public class MyWorld extends World {
         Rock rock = new Rock();
         addObject(rock, 900, 300);
          
+        MusicPlayer.playLoop();
     }
     /**
      * Act has background and scrolling, eagle and rock spawning

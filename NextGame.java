@@ -32,6 +32,8 @@ public class NextGame extends World
         addObject(scoreLabel, 50, 50);
         spawnReward();
         spawnApple();
+        
+        MusicPlayer.playLoop();
     }
     /**
      * if 10 basils collects, move to next level

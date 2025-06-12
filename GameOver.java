@@ -44,6 +44,8 @@ public class GameOver extends World
         //add player (with deat animation)
         Person person = new Person();
         addObject(person,500,300);
+        
+        MusicPlayer.stop();
     }
     /**
      * continuously checks if enter is pressed to restart the game

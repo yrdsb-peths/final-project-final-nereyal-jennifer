@@ -35,6 +35,7 @@ public class TitleScreen extends World
         addObject(oldLady, 631, 341);
         dialogueBox = new DialogueBox("GRANDMA'S DISH \n Welcome to the game \nyour first mission is find the \nold lady and approach her \nIgnore the hint below for now");
         addObject(dialogueBox, getWidth()/2, 100);
+        MusicPlayer.playLoop();
     }
     /**
      * Act - waits to move to next world (MyWorld) when space key pressed

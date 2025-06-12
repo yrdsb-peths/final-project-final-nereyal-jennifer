@@ -37,7 +37,7 @@ public class Thanks extends World
         
         //set this image as the background
         setBackground(bg);
-        
+        MusicPlayer.stop();
     }
     /**
      * Act - click enter to go to titlescreen, restart game
