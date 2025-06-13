@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Person extends Actor
 {
     //Movement, velocity/gravity aspect taken from online Greenfoot guide
-    private int jumpHeight = 80;
+    private int jumpHeight = 100;
     private boolean isJumping = false;
     private int gravity = 2;
     private int groundLevel = 260;
