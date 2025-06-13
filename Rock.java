@@ -27,12 +27,12 @@ public class Rock extends Actor
     
     public void act()
     {
-        move(-1);
+        move(-2);
         
         //If rock goes off the left edge, reposition it
         if (getX() <= 0)
         {
-            resetRock();
+            getWorld().removeObject(this);
         }
         //If rock touches the player and they aren't jumping over it, end teh game
         else if (isTouching(Person.class))
@@ -43,12 +43,6 @@ public class Rock extends Actor
         }
         
     }
-    /**
-     * Resets the rock's position to the right side of the screen
-     */
-    public void resetRock()
-    {
-        setLocation(1000, 300);
-    }
+    
     
 }

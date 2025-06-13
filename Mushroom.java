@@ -27,7 +27,7 @@ public class Mushroom extends Actor
     public void act()
     {
         // Add your action code here.
-        setLocation(getX() - 1, getY());
+        setLocation(getX() - 2, getY());
         MyWorld world= (MyWorld) getWorld();
         if(getX() <= 0) 
         {

@@ -72,9 +72,9 @@ public class MyWorld extends World {
         if (rockTimer <= 0)
         {
             addObject(new Rock(), 1000, 300);
-            rockTimer = Greenfoot.getRandomNumber((800) + 7000);
+            rockTimer = Greenfoot.getRandomNumber((300) + 600);
         }
-        if (score == 20){
+        if (score == 10){
             Greenfoot.setWorld(new BetweenTwoWorld1());
         }
     }

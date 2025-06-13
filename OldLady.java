@@ -22,7 +22,7 @@ public class OldLady extends Actor
     //Dialogue arrays for different worlds
     private String[] dialogues1 = {"Hello my dear.", "Thank you for getting here quickly.", "I am not feeling well.", "But you can help me!",
                                     "We're going to make my famous bowl.", 
-                                    "It'll use mushrooms and basil.", "Collect 20 mushrooms \njumping over rocks (up key) \n and attacking eagles (space bar).", "Then, run right & left for falling basil.", "I'll guide you my dear.", "Click space to start!"};
+                                    "It'll use mushrooms and basil.", "Collect 10 mushrooms \njumping over rocks (up key) \n and attacking eagles (space bar).", "Then, run right & left for falling basil.", "I'll guide you my dear.", "Click space to start!"};
     
     private String[] dialogues2 = {"Great job, most people die there.", "Now, just collect 10 basils from the sky!", "Use the arrow keys to move.", "Click space to start!"};
     
